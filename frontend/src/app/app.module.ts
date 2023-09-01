@@ -51,7 +51,7 @@ export class AppModule {
   constructor() {
     Auth0.configure({
       domain: 'dev-na28whcishipj6up.us.auth0.com',
-      audience: 'https://online-exam/',
+      audience: 'https://approval-portal/',
       clientID: 'pFKG6ErjOE4crtGf0aXxmSt1aWONQTgp',
       redirectUri: 'http://localhost:4200/callback',
       scope: 'openid profile manage:exams'

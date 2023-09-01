@@ -7,7 +7,7 @@ from urllib.request import urlopen
 
 AUTH0_DOMAIN = 'dev-na28whcishipj6up.us.auth0.com'
 ALGORITHMS = ['RS256']
-API_AUDIENCE = 'https://online-exam/'
+API_AUDIENCE = 'https://approval-portal/'
 
 
 class AuthError(Exception):
