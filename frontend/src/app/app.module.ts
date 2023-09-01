@@ -1,9 +1,13 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
+import { FormsModule } from '@angular/forms'; 
 
 import {AppComponent} from './app.component';
 import {ExamsApiService} from './exams/exams-api.service';
+import { LoginComponent } from './login/login.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { RegisterComponent } from './register/register.component';
 
 
 import {ExamFormComponent} from './exams/exam-form.component';
@@ -18,6 +22,9 @@ const appRoutes: Routes = [
   { path: 'callback', component: CallbackComponent },
   { path: 'new-exam', component: ExamFormComponent },
   { path: '', component: ExamsComponent },
+  { path: 'nav', component: NavBarComponent },
+  { path: 'login', component: LoginComponent},
+  { path: 'register', component: RegisterComponent}
 ];
 
 @NgModule({
@@ -26,6 +33,9 @@ const appRoutes: Routes = [
     ExamFormComponent,
     ExamsComponent,
     CallbackComponent,
+    LoginComponent,
+    NavBarComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
