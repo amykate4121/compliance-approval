@@ -4,15 +4,15 @@ import {HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms'; 
 
 import {AppComponent} from './app.component';
-import {ExamsApiService} from './exams/exams-api.service';
-import { LoginComponent } from './login/login.component';
+import {ExamsApiService} from './login/login-api.service';
+// import { LoginComponent } from './login/login.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { RegisterComponent } from './register/register.component';
 
 
-import {ExamFormComponent} from './exams/exam-form.component';
+import {LoginComponent} from './login/login.component';
 import {RouterModule, Routes} from '@angular/router';
-import {ExamsComponent} from './exams/exams.component';
+// import {ExamsComponent} from './exams/exams.component';
 
 
 import * as Auth0 from 'auth0-web';
@@ -20,8 +20,8 @@ import {CallbackComponent} from './callback.component';
 
 const appRoutes: Routes = [
   { path: 'callback', component: CallbackComponent },
-  { path: 'new-exam', component: ExamFormComponent },
-  { path: '', component: ExamsComponent },
+  { path: 'new-exam', component: LoginComponent },
+  { path: '', component: LoginComponent },
   { path: 'nav', component: NavBarComponent },
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent}
@@ -30,8 +30,8 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    ExamFormComponent,
-    ExamsComponent,
+    // ExamFormComponent,
+    // ExamsComponent,
     CallbackComponent,
     LoginComponent,
     NavBarComponent,
