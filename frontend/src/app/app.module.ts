@@ -4,38 +4,33 @@ import {HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms'; 
 
 import {AppComponent} from './app.component';
-import {ExamsApiService} from './login/login-api.service';
+import {ExamsApiService} from './landing/landing-api.service';
 // import { LoginComponent } from './login/login.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { RegisterComponent } from './register/register.component';
+// import { RegisterComponent } from './register/register.component';
 
 
-import {LoginComponent} from './login/login.component';
+import {LandingComponent} from './landing/landing.component';
+import {HomeComponent} from './home/home.component';
 import {RouterModule, Routes} from '@angular/router';
 // import {ExamsComponent} from './exams/exams.component';
 
 
 import * as Auth0 from 'auth0-web';
-import {CallbackComponent} from './callback.component';
+
 
 const appRoutes: Routes = [
-  { path: 'callback', component: CallbackComponent },
-  { path: 'new-exam', component: LoginComponent },
-  { path: '', component: LoginComponent },
+  { path: '', component: LandingComponent },
   { path: 'nav', component: NavBarComponent },
-  { path: 'login', component: LoginComponent},
-  { path: 'register', component: RegisterComponent}
+  { path: 'home', component: HomeComponent},
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    // ExamFormComponent,
-    // ExamsComponent,
-    CallbackComponent,
-    LoginComponent,
+    LandingComponent,
     NavBarComponent,
-    RegisterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +48,7 @@ export class AppModule {
       domain: 'dev-na28whcishipj6up.us.auth0.com',
       audience: 'https://approval-portal/',
       clientID: 'pFKG6ErjOE4crtGf0aXxmSt1aWONQTgp',
-      redirectUri: 'http://localhost:4200/callback',
+      redirectUri: 'http://localhost:4200/home',
       scope: 'openid profile manage:exams'
     });
   }
