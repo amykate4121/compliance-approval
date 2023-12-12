@@ -14,16 +14,17 @@ import {LandingComponent} from './landing/landing.component';
 import {HomeComponent} from './home/home.component';
 import {RouterModule, Routes} from '@angular/router';
 // import {ExamsComponent} from './exams/exams.component';
-
-
+import { RichTextEditorModule, ToolbarService, LinkService, ImageService, HtmlEditorService, TableService, QuickToolbarService } from '@syncfusion/ej2-angular-richtexteditor';
 import * as Auth0 from 'auth0-web';
-import { AuthModule } from '@auth0/auth0-angular';
+import { AuthGuard, AuthModule } from '@auth0/auth0-angular';
+import { TextEditorComponent } from './text-editor/text-editor.component';
 
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'nav', component: NavBarComponent },
-  { path: 'home', component: HomeComponent},
+  { path: 'home', component: HomeComponent, canLoad:[AuthGuard]},
+  { path: 'text-editor', component: TextEditorComponent, canLoad:[AuthGuard]},
 ];
 
 @NgModule({
@@ -31,7 +32,8 @@ const appRoutes: Routes = [
     AppComponent,
     LandingComponent,
     NavBarComponent,
-    HomeComponent
+    HomeComponent,
+    TextEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -46,8 +48,9 @@ const appRoutes: Routes = [
         redirect_uri: 'http://localhost:4200/home',
       },
     }),
+    RichTextEditorModule
   ],
-  providers: [ExamsApiService],
+  providers: [ExamsApiService, ToolbarService, LinkService, ImageService, HtmlEditorService, TableService, QuickToolbarService ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

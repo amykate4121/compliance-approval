@@ -19,6 +19,7 @@
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
     "@auth0/auth0-angular": "^2.2.1",
+    "@syncfusion/ej2-angular-richtexteditor": "^23.2.7",
     "auth0-web": "^1.7.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

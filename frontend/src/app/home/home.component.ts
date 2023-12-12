@@ -26,4 +26,8 @@ export class HomeComponent {
       self.router.navigate(['/home']);
     });
   }
+
+  navigate(): void{
+    this.router.navigate(['/text-editor']);
+  }
 }
