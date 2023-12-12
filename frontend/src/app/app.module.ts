@@ -17,6 +17,7 @@ import {RouterModule, Routes} from '@angular/router';
 
 
 import * as Auth0 from 'auth0-web';
+import { AuthModule } from '@auth0/auth0-angular';
 
 
 const appRoutes: Routes = [
@@ -38,18 +39,25 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
     ),
+    AuthModule.forRoot({
+      domain: 'dev-na28whcishipj6up.us.auth0.com',
+      clientId: 'pFKG6ErjOE4crtGf0aXxmSt1aWONQTgp',
+      authorizationParams: {
+        redirect_uri: 'http://localhost:4200/home',
+      },
+    }),
   ],
   providers: [ExamsApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor() {
-    Auth0.configure({
-      domain: 'dev-na28whcishipj6up.us.auth0.com',
-      audience: 'https://approval-portal/',
-      clientID: 'pFKG6ErjOE4crtGf0aXxmSt1aWONQTgp',
-      redirectUri: 'http://localhost:4200/home',
-      scope: 'openid profile manage:exams'
-    });
-  }
+  // constructor() {
+  //   Auth0.configure({
+  //     domain: 'dev-na28whcishipj6up.us.auth0.com',
+  //     audience: 'https://approval-portal/',
+  //     clientID: 'pFKG6ErjOE4crtGf0aXxmSt1aWONQTgp',
+  //     redirectUri: 'http://localhost:4200/home',
+  //     scope: 'openid profile manage:exams'
+  //   });
+  // }
 }

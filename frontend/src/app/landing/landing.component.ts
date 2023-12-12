@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 import * as Auth0 from 'auth0-web';
 
 @Component({
@@ -7,11 +8,15 @@ import * as Auth0 from 'auth0-web';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent {
-  constructor() { }
+  constructor(public auth: AuthService) { }
 
-  signIn = Auth0.signIn;
-  signOut = Auth0.signOut;
-  getProfile = Auth0.getProfile;
+  login(): void{
+    this.auth.loginWithRedirect();
+  }
+
+  // signIn = Auth0.signIn;
+  // signOut = Auth0.signOut;
+  // getProfile = Auth0.getProfile;
   authenticated = Auth0.isAuthenticated
   // hero: Hero = {
   //   id: 1,
