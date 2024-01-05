@@ -30,13 +30,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-              "node_modules/@syncfusion"
-             ]
-           },
+                "node_modules/@syncfusion"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
@@ -98,13 +99,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-              "node_modules/@syncfusion"
-             ]
-           },
+                "node_modules/@syncfusion"
+              ]
+            },
             "scripts": []
           }
         }

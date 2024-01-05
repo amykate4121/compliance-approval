@@ -18,6 +18,7 @@ import { RichTextEditorModule, ToolbarService, LinkService, ImageService, HtmlEd
 import * as Auth0 from 'auth0-web';
 import { AuthGuard, AuthModule } from '@auth0/auth0-angular';
 import { TextEditorComponent } from './text-editor/text-editor.component';
+import { DocumentEditorContainerAllModule, DocumentEditorModule, DocumentEditorContainerModule } from '@syncfusion/ej2-angular-documenteditor';
 
 
 const appRoutes: Routes = [
@@ -48,7 +49,8 @@ const appRoutes: Routes = [
         redirect_uri: 'http://localhost:4200/home',
       },
     }),
-    RichTextEditorModule
+    // RichTextEditorModule,
+    DocumentEditorModule, DocumentEditorContainerModule
   ],
   providers: [ExamsApiService, ToolbarService, LinkService, ImageService, HtmlEditorService, TableService, QuickToolbarService ],
   bootstrap: [AppComponent]
