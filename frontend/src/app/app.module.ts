@@ -14,11 +14,11 @@ import {LandingComponent} from './landing/landing.component';
 import {HomeComponent} from './home/home.component';
 import {RouterModule, Routes} from '@angular/router';
 // import {ExamsComponent} from './exams/exams.component';
-import { RichTextEditorModule, ToolbarService, LinkService, ImageService, HtmlEditorService, TableService, QuickToolbarService } from '@syncfusion/ej2-angular-richtexteditor';
+// import { RichTextEditorModule, ToolbarService, LinkService, ImageService, HtmlEditorService, TableService, QuickToolbarService } from '@syncfusion/ej2-angular-richtexteditor';
 import * as Auth0 from 'auth0-web';
 import { AuthGuard, AuthModule } from '@auth0/auth0-angular';
 import { TextEditorComponent } from './text-editor/text-editor.component';
-import { DocumentEditorContainerAllModule, DocumentEditorModule, DocumentEditorContainerModule } from '@syncfusion/ej2-angular-documenteditor';
+import { DocumentEditorContainerAllModule, DocumentEditorModule, DocumentEditorContainerModule, ToolbarService } from '@syncfusion/ej2-angular-documenteditor';
 
 
 const appRoutes: Routes = [
@@ -52,7 +52,7 @@ const appRoutes: Routes = [
     // RichTextEditorModule,
     DocumentEditorModule, DocumentEditorContainerModule
   ],
-  providers: [ExamsApiService, ToolbarService, LinkService, ImageService, HtmlEditorService, TableService, QuickToolbarService ],
+  providers: [ExamsApiService, ToolbarService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
