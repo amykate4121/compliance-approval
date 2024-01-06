@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import * as Auth0 from 'auth0-web';
 import {Router} from "@angular/router";
-import { isNgTemplate } from '@angular/compiler';
 
 @Component({
   selector: 'text-editor',
@@ -16,9 +15,5 @@ export class TextEditorComponent {
       if (err) alert(err);
       self.router.navigate(['/text-editor']);
     });
-  }
-
-  public customToolbar: Object ={
-    items: ['Print', 'FontName', 'FontSize', 'FontColor', 'BackgroundColor', '|', 'Bold', 'Italic', 'Underline', 'Alignments', 'Formats', '|', 'Cut', 'Copy', 'Paste', '|', 'Undo', 'Redo', '|', 'OrderedList', 'BulletFormatList', 'SubScript', 'SuperScript', '|', 'CreateTable', 'Image', 'CreateLink']
   }
 }
