@@ -1,3 +1,14 @@
-<div style="margin: 10px;">
-  <ejs-documenteditorcontainer height="720"></ejs-documenteditorcontainer>
+<div style="margin: 10px">
+  <ejs-documenteditorcontainer
+    #documenteditor_default
+    [enableToolbar]="true"
+    (created)="onCreate()"
+    height="600px"
+    spellcheck="true"
+    style="width: 100%; display: block"
+  ></ejs-documenteditorcontainer>
+
+  <div>
+    <button id="generateReport" (click)=generateReport()>Generate Report</button>
+  </div>
 </div>
