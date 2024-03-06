@@ -34,7 +34,8 @@ def generateModel(modelName, labelNames, classificationType):
     return classificationType.from_pretrained(
         modelName,
         id2label = id2label,
-        label2id = label2id
+        label2id = label2id,
+        ignore_mismatched_sizes=True
     )
 
 # tokenize the data so that it can be processed by the model
@@ -170,7 +171,7 @@ nerTokenizedData = tokenizeData(
     nerDataset,
     tokenizeFewNerd,
     "id",
-    "ner_tags"
+    "fine_ner_tags"
 )
 # generate ner model for token classification
 # NOTE - for loading from local checkpoint in colab, use /content/gdrive/My Drive/Colab Notebooks/diss/models/ner/ as model name
