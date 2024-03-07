@@ -13,10 +13,12 @@ import {RouterModule, Routes} from '@angular/router';
 import { AuthGuard, AuthModule } from '@auth0/auth0-angular';
 import { TextEditorComponent } from './text-editor/text-editor.component';
 import { DocumentEditorModule, DocumentEditorContainerModule, ToolbarService } from '@syncfusion/ej2-angular-documenteditor';
+import { EmailFormComponent } from './email-form/email-form.component';
 
 
 const appRoutes: Routes = [
   { path: '', component: LoadingPageComponent },
+  { path: 'email', component: EmailFormComponent },
   { path: 'nav', component: NavBarComponent },
   { path: 'home', component: HomeComponent, canLoad:[AuthGuard]},
   { path: 'text-editor', component: TextEditorComponent, canLoad:[AuthGuard]},
@@ -28,7 +30,8 @@ const appRoutes: Routes = [
     LoadingPageComponent,
     NavBarComponent,
     HomeComponent,
-    TextEditorComponent
+    TextEditorComponent,
+    EmailFormComponent
   ],
   imports: [
     BrowserModule,

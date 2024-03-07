@@ -9,22 +9,8 @@ import * as Auth0 from 'auth0-web';
 })
 export class LoadingPageComponent implements OnInit{
   constructor(public auth: AuthService) { }
+  // when the loading page loads, the user is automatically redirected to the auth0 log in page
   ngOnInit(): void {
     this.auth.loginWithRedirect();
   }
-
-
-
-  // login(): void{
-  //   this.auth.loginWithRedirect();
-  // }
-
-  // // signIn = Auth0.signIn;
-  // // signOut = Auth0.signOut;
-  // // getProfile = Auth0.getProfile;
-  // authenticated = Auth0.isAuthenticated
-  // // hero: Hero = {
-  // //   id: 1,
-  // //   name: 'Windstorm'
-  // // }
 }

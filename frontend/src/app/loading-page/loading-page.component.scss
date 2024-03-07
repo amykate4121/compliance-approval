@@ -1,44 +1,21 @@
-// .hr-text {
-//     border: 0;
-//     position: relative;
-//     text-align: center;
-//     font-size: small;
-// }
-
-// .hr-text::before {
-//     content: "";
-//     background: linear-gradient(to right, #C8C8C8, #000000,  #C8C8C8);
-//     position: absolute;
-//     left: 0;
-//     top: 50%;
-//     width: 100%;
-//     height: 1px;
-// }
-
-// .hr-text::after {
-//     content: "OR";
-//     position: relative;
-//     padding: 0 7px;
-//     line-height: 1.5em;
-//     color:#ffffff;
-//     background-color: #369;
-// }
-
+// centre the div
 .center {
-    padding-top: 20%;
-    padding-left: 45%;
-  }
+  padding-top: 20%;
+  padding-left: 45%;
+}
 
+// create a loading icon
 .loading-icon {
-    border: 16px solid #e0edfb;
-    border-radius: 50%;
-    border-top: 16px solid #4788d2;
-    width: 100px;
-    height: 100px;
-    animation: spin 2s linear infinite;
-  }
+  border: 16px solid #e0edfb;
+  border-radius: 50%;
+  border-top: 16px solid #4788d2;
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite;
+}
 
- @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+// rotate the loading icon to indicate to the user that the page is loading
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

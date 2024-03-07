@@ -19,13 +19,14 @@
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
     "@auth0/auth0-angular": "^2.2.1",
+    "@microsoft/signalr": "^8.0.0",
     "@syncfusion/ej2-angular-documenteditor": "^24.1.44",
     "@syncfusion/ej2-angular-richtexteditor": "^23.2.7",
+    "@syncfusion/ej2-material-theme": "~24.1.44",
     "auth0-web": "^1.7.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.13.0",
-    "@syncfusion/ej2-material-theme": "~24.1.44"
+    "zone.js": "~0.13.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.2.0",
