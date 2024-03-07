@@ -1,6 +1,6 @@
 import * as Auth0 from 'auth0-web';
 import { Router } from '@angular/router';
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DocumentEditorContainerComponent, Toolbar, ToolbarService } from '@syncfusion/ej2-angular-documenteditor';
 import {
   DocumentEditorComponent
@@ -12,7 +12,7 @@ import {
   styleUrls: ['./text-editor.component.scss'],
   providers: [ToolbarService]
 })
-export class TextEditorComponent {
+export class TextEditorComponent implements OnInit{
   @ViewChild('document_editor')
   public documentEditor?: DocumentEditorComponent;
   constructor(private router: Router) { }

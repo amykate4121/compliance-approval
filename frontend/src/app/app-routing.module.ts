@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { TextEditorComponent } from './text-editor/text-editor.component';
 import { EmailFormComponent } from './email-form/email-form.component';
+import { ApprovalPageComponent } from './approval-page/approval-page.component';
 
 const routes: Routes = [
   { path: 'nav', component: NavBarComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'email', component: EmailFormComponent},
   { path: 'home', component: HomeComponent, canLoad:[AuthGuard]},
   { path: 'text-editor', component: TextEditorComponent, canLoad:[AuthGuard]},
+  { path: 'approval-page', component: ApprovalPageComponent, canLoad:[AuthGuard]},
 ];
 
 @NgModule({

@@ -14,6 +14,7 @@ import { AuthGuard, AuthModule } from '@auth0/auth0-angular';
 import { TextEditorComponent } from './text-editor/text-editor.component';
 import { DocumentEditorModule, DocumentEditorContainerModule, ToolbarService } from '@syncfusion/ej2-angular-documenteditor';
 import { EmailFormComponent } from './email-form/email-form.component';
+import { ApprovalPageComponent } from './approval-page/approval-page.component';
 
 
 const appRoutes: Routes = [
@@ -22,6 +23,7 @@ const appRoutes: Routes = [
   { path: 'nav', component: NavBarComponent },
   { path: 'home', component: HomeComponent, canLoad:[AuthGuard]},
   { path: 'text-editor', component: TextEditorComponent, canLoad:[AuthGuard]},
+  { path: 'approval-page', component: ApprovalPageComponent, canLoad:[AuthGuard]},
 ];
 
 @NgModule({
@@ -31,7 +33,8 @@ const appRoutes: Routes = [
     NavBarComponent,
     HomeComponent,
     TextEditorComponent,
-    EmailFormComponent
+    EmailFormComponent,
+    ApprovalPageComponent
   ],
   imports: [
     BrowserModule,
