@@ -3,11 +3,11 @@ import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './app.component';
-import {ExamsApiService} from './landing/landing-api.service';
+// import {ExamsApiService} from './loading-page/landing-api.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 
-import {LandingComponent} from './landing/landing.component';
+import {LoadingPageComponent} from './loading-page/loading-page.component';
 import {HomeComponent} from './home/home.component';
 import {RouterModule, Routes} from '@angular/router';
 import { AuthGuard, AuthModule } from '@auth0/auth0-angular';
@@ -16,7 +16,7 @@ import { DocumentEditorModule, DocumentEditorContainerModule, ToolbarService } f
 
 
 const appRoutes: Routes = [
-  { path: '', component: LandingComponent },
+  { path: '', component: LoadingPageComponent },
   { path: 'nav', component: NavBarComponent },
   { path: 'home', component: HomeComponent, canLoad:[AuthGuard]},
   { path: 'text-editor', component: TextEditorComponent, canLoad:[AuthGuard]},
@@ -25,7 +25,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    LandingComponent,
+    LoadingPageComponent,
     NavBarComponent,
     HomeComponent,
     TextEditorComponent
@@ -46,7 +46,7 @@ const appRoutes: Routes = [
     DocumentEditorModule, 
     DocumentEditorContainerModule
   ],
-  providers: [ExamsApiService, ToolbarService],
+  providers: [ToolbarService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

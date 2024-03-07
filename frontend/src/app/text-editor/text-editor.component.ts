@@ -32,4 +32,8 @@ export class TextEditorComponent {
   generateReport(){
     let temp = 123;
   }
+
+  requestApproval(){
+    let temp = 123;
+  }
 }
