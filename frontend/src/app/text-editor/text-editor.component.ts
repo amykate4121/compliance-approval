@@ -6,6 +6,17 @@ import {
   DocumentEditorComponent
 } from '@syncfusion/ej2-angular-documenteditor';
 import { RequestApprovalService } from '../request-approval/request-approval.service';
+import {
+  PdfBitmap,
+  PdfDocument,
+  PdfPageOrientation,
+  PdfPageSettings,
+  PdfSection,
+  SizeF,
+} from '@syncfusion/ej2-pdf-export';
+
+import { ImageFormat } from '@syncfusion/ej2-angular-documenteditor';
+import { RequestDownloadService } from '../request-download/request-download.service';
 
 @Component({
   selector: 'text-editor',
@@ -14,7 +25,7 @@ import { RequestApprovalService } from '../request-approval/request-approval.ser
   providers: [ToolbarService]
 })
 export class TextEditorComponent implements OnInit{
-  constructor(private requestApprovalService: RequestApprovalService){}
+  constructor(private requestApprovalService: RequestApprovalService, private requestDownloadService: RequestDownloadService ){}
   @ViewChild('documenteditor_default')
     public container?: DocumentEditorContainerComponent;
     // load your default document here
@@ -32,6 +43,7 @@ export class TextEditorComponent implements OnInit{
 
   // this method will be completed after the AI model is incorperated
   generateReport(){
+    // AMY DO AI STUFF HERE
     let downloadLink: HTMLAnchorElement = document.createElementNS('http://www.w3.org/1999/xhtml', 'a') as HTMLAnchorElement;
     let http: XMLHttpRequest = new XMLHttpRequest();
         http.open('POST', 'http://localhost:5000/api/documenteditor/ExportSFDT');
@@ -44,10 +56,10 @@ export class TextEditorComponent implements OnInit{
 
   // this method will be completed when integrated with approvers
   requestApproval(){
-    (this.container as DocumentEditorContainerComponent ).documentEditor.save('downloaded report', 'Sfdt');
-    this.requestApprovalService.openPopup();
+    this.requestApprovalService.openPopup(this.container);
+  }
+
+  requestPDFDownload(){
+    this.requestDownloadService.openPopup(this);
   }
 }
-
-
-

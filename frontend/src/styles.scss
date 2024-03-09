@@ -64,9 +64,8 @@
   
   .user-input {
     height: 30px;
-    width: 540px;
+    width: 640px;
     margin: 10px;
-    // margin-left: 10px;
   }
   
   .primary-button {
@@ -76,8 +75,6 @@
     font-family: sans-serif;
     font-size: medium;
     margin: 10px;
-    width: 150px;
-    
   }
   
   .secondary-button {
@@ -87,7 +84,6 @@
     font-family: sans-serif;
     font-size: medium;
     margin: 10px;
-    width: 120px;
   }
   
   .bg {
@@ -112,6 +108,30 @@
   .note{
     color: #ff7777;
     padding-left: 10px;
+    font-size: medium;
+  }
+
+  .note-bold{
+    color: #ff7777;
+    padding-left: 10px;
+    font-size: medium;
+    font-weight: bold;
+  }
+
+  .message{
+    color: #ffffff;
+    padding-left: 10px;
+    font-size: medium;
+  }
+
+  .padding{
+    margin-top: 75px;
+  }
+
+  .text-editor{
+    width: 100%; 
+    display: block; 
+    height: 690px;
   }
 
 // html, body { height: 100%; }
