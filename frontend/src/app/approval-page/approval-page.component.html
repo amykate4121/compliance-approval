@@ -1,6 +1,10 @@
 <div>
+  <nav-bar></nav-bar>
+</div>
+
+<div>
     <ejs-documenteditorcontainer 
-      #document_editor 
+      #documenteditor_default 
       serviceUrl="https://ej2services.syncfusion.com/production/web-services/api/documenteditor/" 
       height="650px" 
       style="display:block" 
@@ -10,10 +14,8 @@
       [showPropertiesPane]="false"
     > </ejs-documenteditorcontainer>
 
-    <div>
-        <button id="approve" (click)=approve()>Approve</button>    
-        <button id="requestChanges" (click)=requestChanges()>Request Changes</button>
-    </div>
-
-
+  <div>
+      <button class="primary-button" id="approve" (click)=approve()>Approve</button>    
+      <button class="primary-button" id="requestChanges" (click)=requestChanges()>Request Changes</button>
+  </div>
 </div>

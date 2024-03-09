@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CharacterFormatProperties, DocumentEditorContainerComponent } from '@syncfusion/ej2-angular-documenteditor';
+import { ApproveService } from '../approve/approve.service';
+import { RequestChangesService } from '../request-changes/request-changes.service';
 
 @Component({
   selector: 'app-approval-page',
@@ -8,8 +10,8 @@ import { CharacterFormatProperties, DocumentEditorContainerComponent } from '@sy
   styleUrls: ['./approval-page.component.scss']
 })
 export class ApprovalPageComponent {
-  constructor(private router: Router) { }
-  @ViewChild('document_editor')
+  constructor(private approveService: ApproveService, private requestChangesService: RequestChangesService) { }
+  @ViewChild('documenteditor_default')
   public container: DocumentEditorContainerComponent;
   public items = ['Open', 'Comments', 'Find'];
 
@@ -21,14 +23,14 @@ export class ApprovalPageComponent {
   }
 
 
-  // this method will be completed after the AI model is incorperated
   approve(){
-    let temp = 123;
+    this.approveService.openPopup();
   }
 
+  // WHY IS CONTAINER UNDEFINED!!
   // this method will be completed when integrated with approvers
   requestChanges(){
-    let temp = 123;
+    this.requestChangesService.openPopup(this.container);
   }
 }
 
