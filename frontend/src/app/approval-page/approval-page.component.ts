@@ -27,7 +27,6 @@ export class ApprovalPageComponent {
     this.approveService.openPopup();
   }
 
-  // WHY IS CONTAINER UNDEFINED!!
   // this method will be completed when integrated with approvers
   requestChanges(){
     this.requestChangesService.openPopup(this.container);
