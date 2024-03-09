@@ -9,16 +9,18 @@
 @import'../node_modules/@syncfusion/ej2-popups/styles/material.css';
 @import'../node_modules/@syncfusion/ej2-richtexteditor/styles/material.css';
 
-h1 {
+  h1 {
     color: #369;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 250%;
   }
   
   h2 {
-    color: #444;
+    color: #dcf1ff;
     font-family: Arial, Helvetica, sans-serif;
-    font-weight: lighter;
+    font-size: 250%;
+    text-align: center;
+    margin: 10px;
   }
     
   h3 {
@@ -29,14 +31,12 @@ h1 {
     padding: 10px;
   }
   
-  h4{
-    color: #4B6074;
+  h4 {
+    color: #369;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 125%; 
-    margin: 20px;  
+    font-size: 250%;
   }
   
-  /* everywhere else */
   * {
     font-family: Arial, Helvetica, sans-serif;
   }
@@ -64,31 +64,30 @@ h1 {
   
   .user-input {
     height: 30px;
-    width: 450px;
-    margin-left: 20px;
+    width: 540px;
+    margin: 10px;
+    // margin-left: 10px;
   }
   
   .primary-button {
-    color: #FFFFFF;
-    background-color: #77B7F7;
-    border-color: #77B7F7;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: large;
-    margin: 20px;
-    margin-left: 200px;
-    width: 100px;
-    border-radius: 2px;
+    color: #ffffff;
+    background-color: #a8ccf4;
+    border-color: #a8ccf4;
+    font-family: sans-serif;
+    font-size: medium;
+    margin: 10px;
+    width: 150px;
+    
   }
   
   .secondary-button {
-    color: #77B7F7;
-    background-color:#e6e6e6b5;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: large;
-    margin: 20px;
-    width: 100px;
-    margin-left: 200px;
-    border: 2px solid #77B7F7;
+    color: #2b7fde;
+    background-color:#f5fbff;
+    border-color: #f5fbff;
+    font-family: sans-serif;
+    font-size: medium;
+    margin: 10px;
+    width: 120px;
   }
   
   .bg {
@@ -109,3 +108,12 @@ h1 {
     min-height: 50%;
     opacity: 85%;
   }
+
+  .note{
+    color: #ff7777;
+    padding-left: 10px;
+  }
+
+// html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

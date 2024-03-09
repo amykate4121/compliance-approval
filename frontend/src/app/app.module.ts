@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {NgModule, importProvidersFrom} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './app.component';
@@ -15,6 +15,8 @@ import { TextEditorComponent } from './text-editor/text-editor.component';
 import { DocumentEditorModule, DocumentEditorContainerModule, ToolbarService } from '@syncfusion/ej2-angular-documenteditor';
 import { EmailFormComponent } from './email-form/email-form.component';
 import { ApprovalPageComponent } from './approval-page/approval-page.component';
+import { RequestApprovalComponent } from './request-approval/request-approval.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 const appRoutes: Routes = [
@@ -34,11 +36,13 @@ const appRoutes: Routes = [
     HomeComponent,
     TextEditorComponent,
     EmailFormComponent,
-    ApprovalPageComponent
+    ApprovalPageComponent,
+    RequestApprovalComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    MatDialogModule,
     RouterModule.forRoot(
       appRoutes,
     ),
@@ -52,7 +56,7 @@ const appRoutes: Routes = [
     DocumentEditorModule, 
     DocumentEditorContainerModule
   ],
-  providers: [ToolbarService],
+  providers: [ToolbarService, importProvidersFrom(HttpClientModule)],
   bootstrap: [AppComponent]
 })
 export class AppModule {

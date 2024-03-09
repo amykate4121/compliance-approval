@@ -1,14 +1,22 @@
 <div>
+  <nav-bar></nav-bar>
+</div>
+
+<div class="padding">
   <ejs-documenteditorcontainer 
     class="text-editor"
     #documenteditor_default
     [enableToolbar]="true"
     [showPropertiesPane]="false"
-    height="650px"
+    height="675px"
+    (created)="onCreate()"
+    style="width:100%;display:block"
   ></ejs-documenteditorcontainer>
 
+  <nav-bar></nav-bar>
+
   <div>
-    <button id="generateReport" (click)=generateReport()>Generate Report</button>    
-    <button id="requestApproval" (click)=requestApproval()>Request Approval</button>
+    <button class="primary-button" id="generateReport" (click)=generateReport()>Generate Report</button>    
+    <button class="primary-button" id="requestApproval" (click)=requestApproval()>Request Approval</button>
   </div>
 </div>

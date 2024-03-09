@@ -8,6 +8,8 @@ import { AuthGuard } from '@auth0/auth0-angular';
 import { TextEditorComponent } from './text-editor/text-editor.component';
 import { EmailFormComponent } from './email-form/email-form.component';
 import { ApprovalPageComponent } from './approval-page/approval-page.component';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 const routes: Routes = [
   { path: 'nav', component: NavBarComponent },
@@ -19,7 +21,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), MatDialogModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

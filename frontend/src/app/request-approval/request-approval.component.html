@@ -1,0 +1,12 @@
+<h2>Approval Request Form</h2>
+<form id="approvalRequestForm">
+  <input class="user-input" id="app1" type="email" name = "Approver 1" placeholder="Approver 1" required>
+  <input class="user-input" id="app2" type="email" name = "Approver 2" placeholder="Approver 2" required>
+  <input class="user-input" id="app3" type="email" name = "Approver 3" placeholder="Approver 3" required>
+
+  <p class="note">Your report has been downloaded locally.  Please attach this to your email.</p>
+  <div class="center">
+    <button class="secondary-button" type="submit">Send Email</button>
+    <button class="secondary-button" mat-button (click)="closeDialog()">Close</button>
+  </div>
+</form>
