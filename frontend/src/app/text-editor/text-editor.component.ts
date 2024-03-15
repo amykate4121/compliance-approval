@@ -17,6 +17,7 @@ import {
 
 import { ImageFormat } from '@syncfusion/ej2-angular-documenteditor';
 import { RequestDownloadService } from '../request-download/request-download.service';
+import { TextEditorApi } from './text-editor.api';
 
 @Component({
   selector: 'text-editor',
@@ -25,7 +26,11 @@ import { RequestDownloadService } from '../request-download/request-download.ser
   providers: [ToolbarService]
 })
 export class TextEditorComponent implements OnInit{
-  constructor(private requestApprovalService: RequestApprovalService, private requestDownloadService: RequestDownloadService ){}
+  authenticated = false;
+  constructor(private requestApprovalService: RequestApprovalService, private requestDownloadService: RequestDownloadService, private textEditorApi: TextEditorApi, private router: Router ){}
+  signIn = Auth0.signIn;
+  signOut = Auth0.signOut;
+  getProfile = Auth0.getProfile;
   @ViewChild('documenteditor_default')
     public container?: DocumentEditorContainerComponent;
     // load your default document here
@@ -38,20 +43,23 @@ export class TextEditorComponent implements OnInit{
 
   // fix this to ensure user can't open if they arent logged in
   ngOnInit(): void {
+    const self = this;
+    Auth0.subscribe((authenticated) => (self.authenticated = authenticated));
   }
-
-
-  // this method will be completed after the AI model is incorperated
-  generateReport(){
-    // AMY DO AI STUFF HERE
-    let downloadLink: HTMLAnchorElement = document.createElementNS('http://www.w3.org/1999/xhtml', 'a') as HTMLAnchorElement;
-    let http: XMLHttpRequest = new XMLHttpRequest();
-        http.open('POST', 'http://localhost:5000/api/documenteditor/ExportSFDT');
-        http.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-        http.responseType = 'json';
-        //Serialize the document content as sfdt.
-        let sfdt: any = { content: this.container.documentEditor.serialize() };
-        http.send(JSON.stringify(sfdt));
+// AMY EDIT HERE
+  generateReport() { 
+    this.container.documentEditor.selection.selectAll(); 
+    let content = this.container.documentEditor.selection.text;
+    let reportContent = {
+      title: content,
+      description: 'test',
+    }
+    this.textEditorApi
+      .saveExam(reportContent)
+      .subscribe(
+        () => this.router.navigate(['/exam']),
+        error => alert(error.message)
+    );
   }
 
   // this method will be completed when integrated with approvers

@@ -15,7 +15,7 @@ export class CallbackComponent implements OnInit {
     const self = this;
     Auth0.handleAuthCallback((err) => {
       if (err) alert(err);
-      self.router.navigate(['/']);
+      self.router.navigate(['/text-editor']);
     });
   }
 }
