@@ -4,12 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-sqlalchemy = "*"
-psycopg2-binary = "*"
-flask = "*"
-marshmallow = "*"
-flask-cors = "*"
-python-jose = "*"
 
 [dev-packages]
 

@@ -160,33 +160,33 @@ sequenceModel = trainAndEvaluateModel(
 )
 
 
-# set the ner model name
-nerModelName = "dslim/bert-large-NER"
-# get tokenizer from pretrained model
-tokenizer = generateTokenizer(nerModelName)
-# load data set for fine tuning ner model
-nerDataset = loadDataset("DFKI-SLT/few-nerd", 'inter')
-# tokenizer dataset used for fine tuning ner model
-nerTokenizedData = tokenizeData(
-    nerDataset,
-    tokenizeFewNerd,
-    "id",
-    "fine_ner_tags"
-)
-# generate ner model for token classification
-# NOTE - for loading from local checkpoint in colab, use /content/gdrive/My Drive/Colab Notebooks/diss/models/ner/ as model name
-nerModel = generateModel(
-    nerModelName,
-    nerTokenizedData["train"].features["labels"].feature.names,
-    AutoModelForTokenClassification
-)
-# train and evaluate ner model for token classification
-# NOTE- when running in colab run in batches of 5000 train and test data sets due to 12 hour Run time limit
-nerModel = trainAndEvaluateModel(
-    nerModel,
-    nerTokenizedData["train"].select(range(20000)),
-    nerTokenizedData["test"].select(range(14000)),
-    computeTokenMetrics,
-    DataCollatorForTokenClassification(tokenizer=tokenizer),
-    './savedModels/ner'
-)
+# # set the ner model name
+# nerModelName = "dslim/bert-large-NER"
+# # get tokenizer from pretrained model
+# tokenizer = generateTokenizer(nerModelName)
+# # load data set for fine tuning ner model
+# nerDataset = loadDataset("DFKI-SLT/few-nerd", 'inter')
+# # tokenizer dataset used for fine tuning ner model
+# nerTokenizedData = tokenizeData(
+#     nerDataset,
+#     tokenizeFewNerd,
+#     "id",
+#     "ner_tags"
+# )
+# # generate ner model for token classification
+# # NOTE - for loading from local checkpoint in colab, use /content/gdrive/My Drive/Colab Notebooks/diss/models/ner/ as model name
+# nerModel = generateModel(
+#     nerModelName,
+#     nerTokenizedData["train"].features["labels"].feature.names,
+#     AutoModelForTokenClassification
+# )
+# # train and evaluate ner model for token classification
+# # NOTE- when running in colab run in batches of 5000 train and test data sets due to 12 hour Run time limit
+# nerModel = trainAndEvaluateModel(
+#     nerModel,
+#     nerTokenizedData["train"].select(range(20000)),
+#     nerTokenizedData["test"].select(range(14000)),
+#     computeTokenMetrics,
+#     DataCollatorForTokenClassification(tokenizer=tokenizer),
+#     './savedModels/ner'
+# )

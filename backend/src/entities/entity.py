@@ -5,10 +5,11 @@ from sqlalchemy import create_engine, Column, String, Integer, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
+# AMY EDIT HERE
 db_url = 'localhost:5432'
-db_name = 'compliance-approval-portal'
+db_name = 'online-exam'
 db_user = 'postgres'
-db_password = 'Cap123'
+db_password = '0NLIN3-ex4m'
 engine = create_engine(f'postgresql://{db_user}:{db_password}@{db_url}/{db_name}')
 Session = sessionmaker(bind=engine)
 
