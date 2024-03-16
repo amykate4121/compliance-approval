@@ -18,7 +18,6 @@ import {
 import { ImageFormat } from '@syncfusion/ej2-angular-documenteditor';
 import { RequestDownloadService } from '../request-download/request-download.service';
 import { TextEditorApi } from './text-editor.api';
-import { GenerateReportService } from '../generate-report/generate-report.service';
 
 @Component({
   selector: 'text-editor',
@@ -28,7 +27,7 @@ import { GenerateReportService } from '../generate-report/generate-report.servic
 })
 export class TextEditorComponent implements OnInit{
   authenticated = false;
-  constructor(private requestApprovalService: RequestApprovalService, private generateReportService: GenerateReportService, private requestDownloadService: RequestDownloadService, private textEditorApi: TextEditorApi, private router: Router ){}
+  constructor(private requestApprovalService: RequestApprovalService, private requestDownloadService: RequestDownloadService, private textEditorApi: TextEditorApi, private router: Router ){}
   signIn = Auth0.signIn;
   signOut = Auth0.signOut;
   getProfile = Auth0.getProfile;
