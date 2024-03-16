@@ -10,6 +10,11 @@ import { EmailFormComponent } from './email-form/email-form.component';
 import { ApprovalPageComponent } from './approval-page/approval-page.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ExamsComponent } from './exams/exams.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   { path: 'nav', component: NavBarComponent },
@@ -22,7 +27,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), MatDialogModule],
+  imports: [BrowserAnimationsModule, RouterModule.forRoot(routes), MatDialogModule, MatSidenavModule, MatFormFieldModule, MatSelectModule, MatButtonModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

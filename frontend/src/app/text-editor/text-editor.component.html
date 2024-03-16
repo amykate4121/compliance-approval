@@ -2,20 +2,57 @@
   <nav-bar></nav-bar>
 </div>
 
-<div class="padding">
-  <ejs-documenteditorcontainer 
-    class="text-editor"
-    #documenteditor_default
-    [enableToolbar]="true"
-    [showPropertiesPane]="false"
-    height="675px"
-    (created)="onCreate()"
-    style="width:100%;display:block"
-  ></ejs-documenteditorcontainer>
-  
-  <div>
-    <button class="primary-button" id="generateReport" (click)=generateReport()>Generate Report</button>    
-    <button class="primary-button" id="requestApproval" (click)=requestApproval()>Request Approval</button>
-    <button class="primary-button" id="requestDownload" (click)=requestPDFDownload()>Request Download</button>
-  </div>
-</div>
+<mat-drawer-container
+  class="text-editor-container"
+  hasBackdrop="false"
+>
+  <mat-drawer #drawer mode="side" class="sidebar" position="end">
+    <div align="end">
+      <button
+          class="primary-button"
+          id="close"
+          (click)="close()"
+        >
+        X
+        </button>
+    </div>
+    <exams></exams>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="padding">
+      <ejs-documenteditorcontainer
+        class="text-editor"
+        #documenteditor_default
+        [enableToolbar]="true"
+        [showPropertiesPane]="false"
+        height="675px"
+        (created)="onCreate()"
+        style="width: 100%; display: block"
+      ></ejs-documenteditorcontainer>
+
+      <div>
+        <button
+          class="primary-button"
+          id="generateReport"
+          (click)="generateReport()"
+        >
+          Generate Report
+        </button>
+        <button
+          class="primary-button"
+          id="requestApproval"
+          (click)="requestApproval()"
+        >
+          Request Approval
+        </button>
+        <button
+          class="primary-button"
+          id="requestDownload"
+          (click)="requestPDFDownload()"
+        >
+          Request Download
+        </button>
+      </div>
+    </div>    
+  </mat-drawer-content>
+</mat-drawer-container>

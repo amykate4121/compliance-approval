@@ -18,6 +18,7 @@ import {
 import { ImageFormat } from '@syncfusion/ej2-angular-documenteditor';
 import { RequestDownloadService } from '../request-download/request-download.service';
 import { TextEditorApi } from './text-editor.api';
+import { GenerateReportService } from '../generate-report/generate-report.service';
 
 @Component({
   selector: 'text-editor',
@@ -27,12 +28,16 @@ import { TextEditorApi } from './text-editor.api';
 })
 export class TextEditorComponent implements OnInit{
   authenticated = false;
-  constructor(private requestApprovalService: RequestApprovalService, private requestDownloadService: RequestDownloadService, private textEditorApi: TextEditorApi, private router: Router ){}
+  constructor(private requestApprovalService: RequestApprovalService, private generateReportService: GenerateReportService, private requestDownloadService: RequestDownloadService, private textEditorApi: TextEditorApi, private router: Router ){}
   signIn = Auth0.signIn;
   signOut = Auth0.signOut;
   getProfile = Auth0.getProfile;
   @ViewChild('documenteditor_default')
     public container?: DocumentEditorContainerComponent;
+
+  @ViewChild('drawer')
+    public drawer?;
+    
     // load your default document here
     
     onCreate(): any {
@@ -48,7 +53,7 @@ export class TextEditorComponent implements OnInit{
   }
 // AMY EDIT HERE
   generateReport() { 
-    this.container.documentEditor.selection.selectAll(); 
+        this.container.documentEditor.selection.selectAll(); 
     let content = this.container.documentEditor.selection.text;
     let reportContent = {
       title: content,
@@ -57,9 +62,14 @@ export class TextEditorComponent implements OnInit{
     this.textEditorApi
       .saveExam(reportContent)
       .subscribe(
-        () => this.router.navigate(['/exam']),
+        () => this.drawer.toggle(),
         error => alert(error.message)
     );
+    // this.drawer.toggle();
+  }
+
+  close(){
+    this.drawer.toggle();
   }
 
   // this method will be completed when integrated with approvers

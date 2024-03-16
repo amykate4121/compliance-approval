@@ -16,12 +16,18 @@ import { EmailFormComponent } from './email-form/email-form.component';
 import { ApprovalPageComponent } from './approval-page/approval-page.component';
 import { RequestApprovalComponent } from './request-approval/request-approval.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import { ExamsComponent } from './exams/exams.component';
 import { CallbackComponent } from './callback.component';
 import * as Auth0 from 'auth0-web';
 import { TextEditorApi } from './text-editor/text-editor.api';
 import { ExamFormComponent } from './exams/exam-form.component';
 import { ExamsApiService } from './exams/exams-api.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 const appRoutes: Routes = [
   { path: '', component: LoadingPageComponent },
@@ -49,9 +55,11 @@ const appRoutes: Routes = [
     CallbackComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
     MatDialogModule,
+    MatSidenavModule, MatFormFieldModule, MatSelectModule, MatButtonModule,
     RouterModule.forRoot(
       appRoutes,
     ),
