@@ -33,6 +33,11 @@ def get_exams():
 @requires_auth
 # AMY EDIT HERE
 def add_exam():
+    session = Session()
+    session.query(Exam).delete()
+    session.commit()
+    session.close()
+
     # mount exam object
     posted_exam = ExamSchema(only=('title', 'description'))\
         .load(request.get_json())
@@ -40,6 +45,8 @@ def add_exam():
     title = posted_exam.get('title')
 
     title = title + '!!!!!!'
+
+    title = "no add again"
 
     # here the report needs to be generated and written rather than the full content of the report
     posted_exam = {'title': title, 'description': 'test'}
@@ -52,7 +59,7 @@ def add_exam():
 
     # return created exam
     new_exam = ExamSchema().dump(exam)
-    session.close()
+    # session.close()
     return jsonify(new_exam), 201
 
 @app.errorhandler(AuthError)
