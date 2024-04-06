@@ -18,6 +18,7 @@ import {
 import { ImageFormat } from '@syncfusion/ej2-angular-documenteditor';
 import { RequestDownloadService } from '../request-download/request-download.service';
 import { TextEditorApi } from './text-editor.api';
+import { ExamsComponent } from '../exams/exams.component';
 
 @Component({
   selector: 'text-editor',
@@ -36,6 +37,8 @@ export class TextEditorComponent implements OnInit{
 
   @ViewChild('drawer')
     public drawer?;
+    public isLoading = false;
+  @ViewChild(ExamsComponent) examsComponent: ExamsComponent;
     
     // load your default document here
     
@@ -52,20 +55,26 @@ export class TextEditorComponent implements OnInit{
   }
 // AMY EDIT HERE
 // CALL GET AFTER POSTING TO ACTUALLY MAKE SURE IT UPDATES
-  generateReport() { 
+  async generateReport() { 
         this.container.documentEditor.selection.selectAll(); 
     let content = this.container.documentEditor.selection.text;
     let reportContent = {
       title: content,
       description: 'test',
     }
-    this.textEditorApi
-      .saveExam(reportContent)
-      .subscribe(
-        () => this.drawer.toggle(),
-        error => alert(error.message)
-    );
-    // this.drawer.toggle();
+
+
+    try {
+      this.isLoading = true; // Set isLoading to true to display loading icon
+      await this.textEditorApi.saveExam(reportContent).toPromise(); // Assuming saveExam returns an Observable
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      this.isLoading = false; // Reset isLoading to false once operation is complete (whether success or error)
+    }
+
+    this.drawer.toggle();
+    this.examsComponent.ngOnInit();
   }
 
   close(){
