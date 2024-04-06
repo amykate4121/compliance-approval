@@ -6,6 +6,14 @@ from .entities.entity import Session, engine, Base
 from .entities.exam import Exam, ExamSchema
 from .auth import AuthError, requires_auth
 
+
+from datasets import load_dataset
+from transformers import AutoTokenizer, AutoModelForSequenceClassification, AutoModelForTokenClassification, TrainingArguments, Trainer, pipeline, DataCollatorForTokenClassification
+import evaluate
+import numpy as np
+from transformers import AutoTokenizer, AutoModelForTokenClassification
+from transformers import pipeline
+
 # creating the Flask application
 app = Flask(__name__)
 CORS(app)
@@ -42,20 +50,60 @@ def add_exam():
     posted_exam = ExamSchema(only=('title', 'description'))\
         .load(request.get_json())
 
-    title = posted_exam.get('title')
+    body = posted_exam.get('title')
 
-    title = title + '!!!!!!'
+    # AMY CHANGE TO BE ACC REPORT
+    # body = 'Please note that all information in this report is fictionalised. Example Google Report.  I work at Google. My experience so far at work has been awful.  This report will focus on team x at Google.  Agile is an software development lifecycle that allows for periodic feedback from users.  I think that the current approach of the team is awful. The team dont bother considering the needs of users.  One suggestion is that an agile approach is adopted.'
+    sequence = body.split('.')
 
-    title = "no add again"
+    # load the finetuned models
+    nerTokenizer = AutoTokenizer.from_pretrained("dslim/bert-base-NER")
+    nerModel = AutoModelForTokenClassification.from_pretrained("C:/Users/amyka/Documents/year 4/Dissertation/compliance-approval-portal/backend/src/savedModels/ner")
+    sequenceTokenizer = AutoTokenizer.from_pretrained("finiteautomata/bertweet-base-sentiment-analysis")
+    sequenceModel = AutoModelForSequenceClassification.from_pretrained("C:/Users/amyka/Documents/year 4/Dissertation/compliance-approval-portal/backend/src/savedModels/sequence")
 
-    # here the report needs to be generated and written rather than the full content of the report
-    posted_exam = {'title': title, 'description': 'test'}
-    exam = Exam(**posted_exam, created_by="HTTP post request")
+    # run the ner model to find concerns
+    nerPipeline = pipeline("ner", model=nerModel, tokenizer=nerTokenizer)
+    nerResults = nerPipeline(body)
 
-    # persist exam
+    # run the sequence model to identify non-compliant words
+    sequencePipeline = pipeline("sentiment-analysis", model=sequenceModel, tokenizer=sequenceTokenizer)
+    sequenceResults = sequencePipeline(sequence)
+
+    # find the full sentence that contains a word of concern and highlight the concern for ner model to provice contect
+    concerns = []
+    for concern in nerResults:
+        # find the sentences
+        y = concern.get('start')
+        uptoconcern = body[0:y]
+        numFullStops = uptoconcern.count('.')
+        concerningsentence = sequence[numFullStops]
+        concerns.append({'concerningSentence': concerningsentence, 'issue': concern.get('entity')})
+        y = y + 1
+    # for report find sentense with concerning word.  this gives more context
+
+    # associate the sentence with the concern based on sequence
+    labels = []
+    for i, classification in enumerate(sequenceResults):
+        label = classification.get('label')
+        if (label != 'neutral'):
+            labels.append({'concerningSentence': sequence[i], 'issue': label})
+
     session = Session()
-    session.add(exam)
-    session.commit()
+    exam = ''
+    # post each finding of the ner report and save it
+    for concern in concerns:
+        posted_exam = {'title': concern.get('concerningSentence'), 'description': concern.get('issue')}
+        exam = Exam(**posted_exam, created_by="HTTP post request")
+        session.add(exam)
+        session.commit()
+
+    # post each finding of the ner report and save it
+    for label in labels:
+        posted_exam = {'title': label.get('concerningSentence'), 'description': label.get('issue')}
+        exam = Exam(**posted_exam, created_by="HTTP post request")
+        session.add(exam)
+        session.commit()
 
     # return created exam
     new_exam = ExamSchema().dump(exam)

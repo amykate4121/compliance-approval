@@ -5,7 +5,7 @@
   <p *ngIf="authenticated">Hello, {{getProfile().name}}</p>
   <ul>
     <li *ngFor="let exam of examsList">
-      {{exam.title}}
+      {{exam.title}} , {{exam.description}}
     </li>
   </ul>
 </div>

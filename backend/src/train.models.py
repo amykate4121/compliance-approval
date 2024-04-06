@@ -93,7 +93,7 @@ def finetuneModel (model, trainDataset, evalDataset, computeMetrics, dataCollato
     trainer.train()
     return trainer
 
-# compute the metrics for how will the sequence classification model performs
+# compute the metrics for how the sequence classification model performs
 def computeSequenceMetrics (evaluatePredictions):
     metric = evaluate.load("accuracy")
     logits, labels = evaluatePredictions
@@ -101,7 +101,7 @@ def computeSequenceMetrics (evaluatePredictions):
     metrics = metric.compute(predictions = predictions, references=labels)
     return metrics
 
-# compute the metrics for how will the token classification model performs
+# compute the metrics for how the token classification model performs
 # due to the nature of the model and padding of the dataset certain labels need to be removed in order to develop accurate predictions
 def computeTokenMetrics(evaluationPredictions):
     metric = evaluate.load("seqeval")
@@ -152,41 +152,45 @@ sequenceModel = generateModel(
 # train and evaluate model for sequence classification
 sequenceModel = trainAndEvaluateModel(
     sequenceModel,
-    sequenceTokenizedData["train"].select(range(19000)),
-    sequenceTokenizedData["train"].select(range(19000, 38000)),
+    # sequenceTokenizedData["train"].select(range(19000)),
+    # sequenceTokenizedData["train"].select(range(19000, 38000)),
+    sequenceTokenizedData["train"].select(range(2)),
+    sequenceTokenizedData["train"].select(range(2, 3)),
     computeSequenceMetrics,
     None,
     './savedModels/sequence'
 )
 
 
-# # set the ner model name
-# nerModelName = "dslim/bert-large-NER"
-# # get tokenizer from pretrained model
-# tokenizer = generateTokenizer(nerModelName)
-# # load data set for fine tuning ner model
-# nerDataset = loadDataset("DFKI-SLT/few-nerd", 'inter')
-# # tokenizer dataset used for fine tuning ner model
-# nerTokenizedData = tokenizeData(
-#     nerDataset,
-#     tokenizeFewNerd,
-#     "id",
-#     "ner_tags"
-# )
-# # generate ner model for token classification
-# # NOTE - for loading from local checkpoint in colab, use /content/gdrive/My Drive/Colab Notebooks/diss/models/ner/ as model name
-# nerModel = generateModel(
-#     nerModelName,
-#     nerTokenizedData["train"].features["labels"].feature.names,
-#     AutoModelForTokenClassification
-# )
-# # train and evaluate ner model for token classification
-# # NOTE- when running in colab run in batches of 5000 train and test data sets due to 12 hour Run time limit
-# nerModel = trainAndEvaluateModel(
-#     nerModel,
-#     nerTokenizedData["train"].select(range(20000)),
-#     nerTokenizedData["test"].select(range(14000)),
-#     computeTokenMetrics,
-#     DataCollatorForTokenClassification(tokenizer=tokenizer),
-#     './savedModels/ner'
-# )
+# set the ner model name
+nerModelName = "dslim/bert-large-NER"
+# get tokenizer from pretrained model
+tokenizer = generateTokenizer(nerModelName)
+# load data set for fine tuning ner model
+nerDataset = loadDataset("DFKI-SLT/few-nerd", 'inter')
+# tokenizer dataset used for fine tuning ner model
+nerTokenizedData = tokenizeData(
+    nerDataset,
+    tokenizeFewNerd,
+    "id",
+    "fine_ner_tags"
+)
+# generate ner model for token classification
+# NOTE - for loading from local checkpoint in colab, use /content/gdrive/My Drive/Colab Notebooks/diss/models/ner/ as model name
+nerModel = generateModel(
+    nerModelName,
+    nerTokenizedData["train"].features["labels"].feature.names,
+    AutoModelForTokenClassification
+)
+# train and evaluate ner model for token classification
+# NOTE- when running in colab run in batches of 5000 train and test data sets due to 12 hour Run time limit
+nerModel = trainAndEvaluateModel(
+    nerModel,
+    # nerTokenizedData["train"].select(range(20000)),
+    # nerTokenizedData["test"].select(range(14000)),
+    nerTokenizedData["train"].select(range(2)),
+    nerTokenizedData["test"].select(range(1)),
+    computeTokenMetrics,
+    DataCollatorForTokenClassification(tokenizer=tokenizer),
+    './savedModels/ner'
+)

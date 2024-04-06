@@ -40,7 +40,7 @@ export class TextEditorComponent implements OnInit{
     // load your default document here
     
     onCreate(): any {
-          let sfdt: string = `{"sections":[{"sectionFormat":{},"blocks":[{"paragraphFormat":{},"characterFormat":{},"inlines":[{"characterFormat":{},"text":"CONFIDENTIAL - These materials are confidential and may not be used, edited, altered, reproduced, published or distributed without the consent of both the author and Company x.  All rights are reserved to their full extent."}]}]}]}`;
+          let sfdt: string = `{"sections":[{"sectionFormat":{},"blocks":[{"paragraphFormat":{},"characterFormat":{},"inlines":[{"characterFormat":{},"text":"These materials are confidential and may not be used, edited, altered, reproduced, published or distributed without consent."}]}]}]}`;
           // open the default document.
           (this.container as DocumentEditorContainerComponent ).documentEditor.open(sfdt);
     }
@@ -51,6 +51,7 @@ export class TextEditorComponent implements OnInit{
     Auth0.subscribe((authenticated) => (self.authenticated = authenticated));
   }
 // AMY EDIT HERE
+// CALL GET AFTER POSTING TO ACTUALLY MAKE SURE IT UPDATES
   generateReport() { 
         this.container.documentEditor.selection.selectAll(); 
     let content = this.container.documentEditor.selection.text;

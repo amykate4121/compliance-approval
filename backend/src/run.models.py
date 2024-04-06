@@ -5,35 +5,48 @@ import numpy as np
 from transformers import AutoTokenizer, AutoModelForTokenClassification
 from transformers import pipeline
 
-# comment and tidy this to then use to generate a report
-nertokenizer = AutoTokenizer.from_pretrained("dslim/bert-base-NER")
-nermodel = AutoModelForTokenClassification.from_pretrained("./models/ner")
+# AMY CHANGE TO BE ACC REPORT
+example = 'These materials are confidential and may not be used, edited, altered, reproduced, published or distributed without consent. Please note that all information in this report is fictionalised. Example Google Report. I work at Google. My experience so far at work has been awful. This report will focus on team x at Google. Agile is an software development lifecycle that allows for periodic feedback from users. I think that the current approach of the team is awful. The team dont bother considering the needs of users. One suggestion is that an agile approach is adopted.'
+sequence = example.split('. ')
 
-nlp = pipeline("ner", model=nermodel, tokenizer=nertokenizer)
-example = 'Please note that all information in this report is fictionalised. Example essay. I work at Google.  My managers name is Frank.  My experience so far at work has been awful.  This report will focus on team development101 at Google.  I think that the current approach of the team is awful. Agile is a software development lifecycle that allows for periodic feedback from users. The team dont bother considering the needs of users.  One suggestion is that an agile approach is adopted.'
+# load the finetuned models
+nerTokenizer = AutoTokenizer.from_pretrained("dslim/bert-base-NER")
+nerModel = AutoModelForTokenClassification.from_pretrained("./savedModels/ner")
+# sequenceTokenizer = AutoTokenizer.from_pretrained("finiteautomata/bertweet-base-sentiment-analysis")
+# sequenceModel = AutoModelForSequenceClassification.from_pretrained("./savedModels/sequence")
 
-ner_results = nlp(example)
+# run the ner model to find concerns
+nerPipeline = pipeline("ner", model=nerModel, tokenizer=nerTokenizer)
+nerResults = nerPipeline(example)
+print(nerResults)
 
-sentencesSplit = example.split('.')
-concerns =[]
-for concern in ner_results:
+# # run the sequence model to identify non-compliant words
+# sequencePipeline = pipeline("sentiment-analysis", model=sequenceModel, tokenizer=sequenceTokenizer)
+# sequenceResults = sequencePipeline(sequence)
+
+# find the full sentence that contains a word of concern and highlight the concern for ner model to provice contect
+concerns = []
+for concern in nerResults:
+    # find the sentences
     y = concern.get('start')
     uptoconcern = example[0:y]
     numFullStops = uptoconcern.count('.')
-    concerningsentence = sentencesSplit[numFullStops]
-    concerns.append({'concerningsentencence': concerningsentence, 'entityType': concern.get('entity')})
+    concerningsentence = sequence[numFullStops]
+    concerns.append({'concerningsentence': concerningsentence, 'entityType': concern.get('entity')})
     y=y+1
 # for report find sentense with concerning word.  this gives more context
 print(concerns)
 
+# # associate the sentence with the concern based on sequence
+# labels = []
+# for i, classification in enumerate(sequenceResults):
+#     label = classification.get('label')
+#     if(label != 'neutral'):
+#         labels.append({'concerningsentence': sequence[i], 'entityType': label})
+#
+# print(labels)
 
-tokenizer = AutoTokenizer.from_pretrained("finiteautomata/bertweet-base-sentiment-analysis")
-model = AutoModelForSequenceClassification.from_pretrained("./models/sequence")
-
-sequences = ['PLEASE NOTE THAT ALL INFORMATION IN THIS REPORT IS FICTIONALISED.', 'Example essay.', 'I work at Google.', 'My managers name is Frank', 'My experience so far at work has been awful.', 'The report will focus on team x at Google.', 'Agile is an software development lifecycle that allows for periodic feedback from users.', 'I think that the current approach of the team is awufl.', 'The team dont even bother consideringuser needs', 'One suggestion is that an agile approach is adopted']
-tokens = tokenizer(sequences, padding=True, truncation=True, return_tensors="pt")
-output = model(**tokens)
-
-classifier = pipeline("sentiment-analysis", model=model, tokenizer=tokenizer)
-res = classifier(sequences)
-print(res)
+# print(concerns[0])
+# x = concerns[0]
+# y = x.get('concerningsentence')
+# print(concerns[0].get('concerningsentence'))
