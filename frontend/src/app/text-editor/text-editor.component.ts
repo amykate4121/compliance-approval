@@ -65,11 +65,13 @@ export class TextEditorComponent implements OnInit{
 
 
     try {
+      document.getElementById("overlay").style.display = "block";
       this.isLoading = true; // Set isLoading to true to display loading icon
       await this.textEditorApi.saveExam(reportContent).toPromise(); // Assuming saveExam returns an Observable
     } catch (error) {
       alert(error.message);
     } finally {
+      document.getElementById("overlay").style.display = "none";
       this.isLoading = false; // Reset isLoading to false once operation is complete (whether success or error)
     }
 
@@ -88,5 +90,13 @@ export class TextEditorComponent implements OnInit{
 
   requestPDFDownload(){
     this.requestDownloadService.openPopup(this);
+  }
+
+  turnOn() {
+    document.getElementById("overlay").style.display = "block";
+  }
+  
+  off() {
+    document.getElementById("overlay").style.display = "none";
   }
 }
