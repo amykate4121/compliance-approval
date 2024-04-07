@@ -1,0 +1,21 @@
+<div class="navbar">
+  <nav-bar></nav-bar>
+</div>
+
+<div class="padding">
+  <div class="bg">
+  <img src="../../assets/images/background.jpg" alt="">
+    <div class="information">
+      <p class="error"> WHOOPSIE! </p>
+      <p class="message2"> It looks like you tried to enter a page you shouldn't have </p>
+      <p class="message2"> Please use the button below to navigate to the correct page </p>
+      
+      <div *ngIf="apprentice" class="centre">
+        <button routerLink="/text-editor" class="secondary-button-large" id="text-editor"> Text Editor </button>
+      </div>
+      <div *ngIf="!apprentice" class="centre">
+        <button routerLink="/approval-page" class="secondary-button-large" id="approval-page"> Approval Page </button>
+      </div>
+    </div>
+</div>
+</div>

@@ -50,9 +50,9 @@
     font-family: Cambria, Georgia, serif;
   }
   
-  .form-input {
+  .information {
     background-color: #e6e6e6b5;
-    width: 500px;
+    width: 650px;
     height: fit-content;
     position: absolute;
     top:0;
@@ -60,6 +60,7 @@
     left: 0;
     right: 0;
     margin: auto; 
+    padding: 25px;
   }
   
   .user-input {
@@ -86,11 +87,23 @@
     font-size: medium;
     margin: 10px;
   }
+
+  .secondary-button-large {
+    color: #2b7fde;
+    background-color:#f5fbff;
+    border-color: #f5fbff;
+    font-family: sans-serif;
+    font-size: 135%;
+    margin-left: 262px;
+    margin-right: 262px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
   
   .bg {
     position: fixed; 
     top: -50%; 
-    left: -50%; 
+    left: -50.1%; 
     width: 200%; 
     height: 200%;
   }
@@ -119,10 +132,25 @@
     font-weight: bold;
   }
 
+  .error {
+    color: #ff7777;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: x-large;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+
   .message{
     color: #ffffff;
     padding-left: 10px;
     font-size: medium;
+  }
+
+  .message2{
+    color: #4788d2;
+    text-align: center;
+    font-size: x-large;
   }
 
   .padding{
@@ -166,4 +194,10 @@
 .center {
   padding-top: 20%;
   padding-left: 45%;
+}
+
+.navbar {
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
 }

@@ -12,7 +12,7 @@ import * as Auth0 from 'auth0-web';
 })
 export class ApprovalPageComponent {
   authenticated = false;
-  constructor(private approveService: ApproveService, private requestChangesService: RequestChangesService) { }
+  constructor(private router: Router, private approveService: ApproveService, private requestChangesService: RequestChangesService) { }
   signIn = Auth0.signIn;
   signOut = Auth0.signOut;
   getProfile = Auth0.getProfile;
@@ -28,6 +28,10 @@ export class ApprovalPageComponent {
     Auth0.subscribe((authenticated) => (this.authenticated = authenticated));
     if (this.authenticated == false){
       this.signIn();
+    }
+
+    if ((this.getProfile().name).includes('@qmul.ac.uk')){
+      this.router.navigate(['/unauthorised-access']);
     }
   }
 

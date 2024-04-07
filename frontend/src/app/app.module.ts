@@ -21,11 +21,13 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ExamsComponent } from './exams/exams.component';
-import { CallbackComponent } from './callback.component';
+// import { CallbackComponent } from './callback.component';
 import * as Auth0 from 'auth0-web';
 import { TextEditorApi } from './text-editor/text-editor.api';
 import { ExamsApiService } from './exams/exams-api.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CallbackComponent } from './callback/callback.component';
+import { UnauthorisedAccessComponent } from './unauthorised-access/unauthorised-access.component';
 
 
 const appRoutes: Routes = [
@@ -37,6 +39,7 @@ const appRoutes: Routes = [
   { path: 'text-editor', component: TextEditorComponent, canLoad:[AuthGuard]},
   { path: 'approval-page', component: ApprovalPageComponent, canLoad:[AuthGuard]},
   { path: 'callback', component: CallbackComponent },
+  { path: 'unauthorised-access', component: UnauthorisedAccessComponent },
 ];
 
 @NgModule({
@@ -51,6 +54,7 @@ const appRoutes: Routes = [
     ApprovalPageComponent,
     RequestApprovalComponent,
     CallbackComponent,
+    UnauthorisedAccessComponent,
   ],
   imports: [
     BrowserAnimationsModule,

@@ -15,6 +15,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UnauthorisedAccessComponent } from './unauthorised-access/unauthorised-access.component';
 
 const routes: Routes = [
   // { path: 'nav', component: NavBarComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   // { path: 'home', component: HomeComponent, canLoad:[AuthGuard]},
   { path: 'text-editor', component: TextEditorComponent, canLoad:[AuthGuard]},
   { path: 'approval-page', component: ApprovalPageComponent, canLoad:[AuthGuard]},
+  { path: 'unauthorised-access', component: UnauthorisedAccessComponent, canLoad:[AuthGuard]},
 ];
 
 @NgModule({
