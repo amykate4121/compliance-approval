@@ -50,8 +50,10 @@ export class TextEditorComponent implements OnInit{
 
   // fix this to ensure user can't open if they arent logged in
   ngOnInit(): void {
-    const self = this;
-    Auth0.subscribe((authenticated) => (self.authenticated = authenticated));
+    Auth0.subscribe((authenticated) => (this.authenticated = authenticated));
+    if (this.authenticated == false){
+      this.signIn();
+    }
   }
 // AMY EDIT HERE
 // CALL GET AFTER POSTING TO ACTUALLY MAKE SURE IT UPDATES

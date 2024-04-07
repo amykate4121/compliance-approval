@@ -7,7 +7,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 
 import {LoadingPageComponent} from './loading-page/loading-page.component';
-import {HomeComponent} from './home/home.component';
+// import {HomeComponent} from './home/home.component';
 import {RouterModule, Routes} from '@angular/router';
 import { AuthGuard, AuthModule } from '@auth0/auth0-angular';
 import { TextEditorComponent } from './text-editor/text-editor.component';
@@ -24,17 +24,16 @@ import { ExamsComponent } from './exams/exams.component';
 import { CallbackComponent } from './callback.component';
 import * as Auth0 from 'auth0-web';
 import { TextEditorApi } from './text-editor/text-editor.api';
-import { ExamFormComponent } from './exams/exam-form.component';
 import { ExamsApiService } from './exams/exams-api.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 const appRoutes: Routes = [
   { path: '', component: LoadingPageComponent },
-  { path: 'email', component: EmailFormComponent },
+  // { path: 'email', component: EmailFormComponent },
   { path: 'exam', component: ExamsComponent },
-  { path: 'nav', component: NavBarComponent },
-  { path: 'home', component: HomeComponent, canLoad:[AuthGuard]},
+  // { path: 'nav', component: NavBarComponent },
+  // { path: 'home', component: HomeComponent, canLoad:[AuthGuard]},
   { path: 'text-editor', component: TextEditorComponent, canLoad:[AuthGuard]},
   { path: 'approval-page', component: ApprovalPageComponent, canLoad:[AuthGuard]},
   { path: 'callback', component: CallbackComponent },
@@ -45,11 +44,10 @@ const appRoutes: Routes = [
     AppComponent,
     LoadingPageComponent,
     NavBarComponent,
-    HomeComponent,
+    // HomeComponent,
     TextEditorComponent,
     EmailFormComponent,
     ExamsComponent,
-    ExamFormComponent,
     ApprovalPageComponent,
     RequestApprovalComponent,
     CallbackComponent,

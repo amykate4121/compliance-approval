@@ -8,9 +8,11 @@ import * as Auth0 from 'auth0-web';
   styleUrls: ['./loading-page.component.scss']
 })
 export class LoadingPageComponent implements OnInit{
+  signIn = Auth0.signIn;
+
   constructor(public auth: AuthService) { }
   // when the loading page loads, the user is automatically redirected to the auth0 log in page
   ngOnInit(): void {
-    this.auth.loginWithRedirect();
+    this.signIn();
   }
 }

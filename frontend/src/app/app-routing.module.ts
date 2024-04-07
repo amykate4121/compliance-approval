@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LoadingPageComponent } from './loading-page/loading-page.component';
-import { HomeComponent } from './home/home.component';
+// import { HomeComponent } from './home/home.component';
 // import { AuthGuard } from './auth/auth-guard.service';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { TextEditorComponent } from './text-editor/text-editor.component';
@@ -17,11 +17,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
-  { path: 'nav', component: NavBarComponent },
+  // { path: 'nav', component: NavBarComponent },
   { path: '', component: LoadingPageComponent},
-  { path: 'email', component: EmailFormComponent},
+  // { path: 'email', component: EmailFormComponent},
   { path: 'exam', component: ExamsComponent},
-  { path: 'home', component: HomeComponent, canLoad:[AuthGuard]},
+  // { path: 'home', component: HomeComponent, canLoad:[AuthGuard]},
   { path: 'text-editor', component: TextEditorComponent, canLoad:[AuthGuard]},
   { path: 'approval-page', component: ApprovalPageComponent, canLoad:[AuthGuard]},
 ];
