@@ -7,17 +7,14 @@ import * as Auth0 from 'auth0-web';
 @Component({
   selector: 'exams',
   templateUrl: './exam.component.html',
+  styleUrls: ['./exams.component.scss'],
 })
 export class ExamsComponent implements OnInit, OnDestroy {
   examsListSubs: Subscription;
   examsList: Exam[];
-  authenticated = false;
+  empty = false;
 
   constructor(private examsApi: ExamsApiService) { }
-
-  signIn = Auth0.signIn;
-  signOut = Auth0.signOut;
-  getProfile = Auth0.getProfile;
 
   ngOnInit() {
     this.examsListSubs = this.examsApi
@@ -27,8 +24,11 @@ export class ExamsComponent implements OnInit, OnDestroy {
         },
         console.error
       );
-    const self = this;
-    Auth0.subscribe((authenticated) => (self.authenticated = authenticated));
+    
+    if(this.examsList.length == 0){
+      this.empty = true
+    }
+    // save empty is examlist length = 0
   }
 
   ngOnDestroy() {

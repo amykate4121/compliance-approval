@@ -1,11 +1,24 @@
-<div>
-  <button routerLink="/new-exam">New Exam</button>
-  <button (click)="signIn()" *ngIf="!authenticated">Sign In</button>
-  <button (click)="signOut()" *ngIf="authenticated">Sign Out</button>
-  <p *ngIf="authenticated">Hello, {{getProfile().name}}</p>
-  <ul>
-    <li *ngFor="let exam of examsList">
-      {{exam.title}} , {{exam.description}}
-    </li>
-  </ul>
+<div *ngIf="!empty">
+  <table class="styled-table">
+    <thead>
+        <tr>
+            <th>Sentence</th>
+            <th>Concern</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let exam of examsList">
+            <td>{{exam.title}}</td>
+            <td>{{exam.description}}</td>
+        </tr>
+    </tbody>
+</table>
+</div> 
+
+<div *ngIf="empty">
+  <h1 class="centre"> No Compliance Issues Detected </h1>
+</div>
+
+<div class="note">
+  Please remember that AI findings are not always entirely accurate and compliance concerns should still be considered carefully.
 </div>
