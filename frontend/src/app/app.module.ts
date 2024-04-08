@@ -20,11 +20,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { ExamsComponent } from './exams/exams.component';
+import { AiReportComponent } from './ai-report/ai-report.component';
 // import { CallbackComponent } from './callback.component';
 import * as Auth0 from 'auth0-web';
 import { TextEditorApi } from './text-editor/text-editor.api';
-import { ExamsApiService } from './exams/exams-api.service';
+import { AiReportApiService } from './ai-report/ai-report-api.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CallbackComponent } from './callback/callback.component';
 import { UnauthorisedAccessComponent } from './unauthorised-access/unauthorised-access.component';
@@ -33,7 +33,7 @@ import { UnauthorisedAccessComponent } from './unauthorised-access/unauthorised-
 const appRoutes: Routes = [
   { path: '', component: LoadingPageComponent },
   // { path: 'email', component: EmailFormComponent },
-  { path: 'exam', component: ExamsComponent },
+  { path: 'exam', component: AiReportComponent },
   // { path: 'nav', component: NavBarComponent },
   // { path: 'home', component: HomeComponent, canLoad:[AuthGuard]},
   { path: 'text-editor', component: TextEditorComponent, canLoad:[AuthGuard]},
@@ -50,7 +50,7 @@ const appRoutes: Routes = [
     // HomeComponent,
     TextEditorComponent,
     EmailFormComponent,
-    ExamsComponent,
+    AiReportComponent,
     ApprovalPageComponent,
     RequestApprovalComponent,
     CallbackComponent,
@@ -75,7 +75,7 @@ const appRoutes: Routes = [
     DocumentEditorModule, 
     DocumentEditorContainerModule
   ],
-  providers: [ExamsApiService, TextEditorApi, ToolbarService, importProvidersFrom(HttpClientModule)],
+  providers: [AiReportApiService, TextEditorApi, ToolbarService, importProvidersFrom(HttpClientModule)],
   bootstrap: [AppComponent]
 })
 

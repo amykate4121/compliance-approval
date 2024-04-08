@@ -1,18 +1,18 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
-import {Exam} from './exam.model';
-import {ExamsApiService} from './exams-api.service';
+import {AiReport} from './ai-report.model';
+import {AiReportApiService} from './ai-report-api.service';
 import * as Auth0 from 'auth0-web';
 import Chart from 'chart.js/auto';
 
 @Component({
-  selector: 'exams',
-  templateUrl: './exam.component.html',
-  styleUrls: ['./exams.component.scss'],
+  selector: 'ai-report',
+  templateUrl: './ai-report.component.html',
+  styleUrls: ['./ai-report.component.scss'],
 })
-export class ExamsComponent implements OnInit, OnDestroy {
-  examsListSubs: Subscription;
-  examsList: Exam[];
+export class AiReportComponent implements OnInit, OnDestroy {
+  aiReportListSubs: Subscription;
+  aiReportList: AiReport[];
   empty = false;
   numSentences = 0;
   bearish = 0;
@@ -20,14 +20,14 @@ export class ExamsComponent implements OnInit, OnDestroy {
   other = 0;
   chart: any;
 
-  constructor(private examsApi: ExamsApiService) { }
+  constructor(private aiReportApi: AiReportApiService) { }
 
   ngOnInit() {
-    this.examsListSubs = this.examsApi
-      .getExams()
+    this.aiReportListSubs = this.aiReportApi
+      .getAiReport()
       .subscribe(res => {
-          this.examsList = res;
-          this.createGraph(this.examsList);
+          this.aiReportList = res;
+          this.createGraph(this.aiReportList);
         },
         console.error
       );
@@ -37,15 +37,15 @@ export class ExamsComponent implements OnInit, OnDestroy {
     if(this.chart != null){
       this.chart.destroy();
     }
-    this.examsListSubs.unsubscribe();
+    this.aiReportListSubs.unsubscribe();
   }
 
-  createGraph(examsList){
+  createGraph(aiReportList){
     this.resetInformation();
-    examsList.forEach(exam => {
-      if(exam.description == 'bearish') {
+    aiReportList.forEach(report => {
+      if(report.description == 'bearish') {
         this.bearish = this.bearish + 1;
-      } else if(exam.description == 'bullish') {
+      } else if(report.description == 'bullish') {
         this.bullish = this.bullish + 1;
       } else {
         this.other = this.other + 1;

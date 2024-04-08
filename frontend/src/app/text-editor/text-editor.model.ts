@@ -1,7 +1,8 @@
 export class TextEditor {
     constructor(
-      public sentence: string,
-      public description: string,
+      public fullBody: string,
+      public sentence?: string,
+      public description?: string,
       public _id?: number,
       public updatedAt?: Date,
       public createdAt?: Date,

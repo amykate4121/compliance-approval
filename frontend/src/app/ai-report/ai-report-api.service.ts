@@ -3,12 +3,12 @@ import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { throwError } from 'rxjs';
 import {API_URL} from '../env';
-import {Exam} from './exam.model';
+import {AiReport} from './ai-report.model';
 import { catchError } from 'rxjs/operators';
 import * as Auth0 from 'auth0-web';
 
 @Injectable()
-export class ExamsApiService {
+export class AiReportApiService {
 
   constructor(private http: HttpClient) {
   }
@@ -19,19 +19,9 @@ export class ExamsApiService {
   }
 
   // GET list of public, future events
-  getExams(): Observable<Exam[]> {
+  getAiReport(): Observable<AiReport[]> {
     return this.http
-      .get<Exam[]>(`${API_URL}/exams`)
-      .pipe(catchError(ExamsApiService._handleError));
-  }
-
-  saveExam(exam: Exam): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${Auth0.getAccessToken()}`
-      })
-    };
-    return this.http
-      .post(`${API_URL}/exams`, exam, httpOptions);
+      .get<AiReport[]>(`${API_URL}/exams`)
+      .pipe(catchError(AiReportApiService._handleError));
   }
 }

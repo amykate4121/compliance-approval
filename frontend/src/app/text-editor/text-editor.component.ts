@@ -18,7 +18,7 @@ import {
 import { ImageFormat } from '@syncfusion/ej2-angular-documenteditor';
 import { RequestDownloadService } from '../request-download/request-download.service';
 import { TextEditorApi } from './text-editor.api';
-import { ExamsComponent } from '../exams/exams.component';
+import { AiReportComponent } from '../ai-report/ai-report.component';
 
 @Component({
   selector: 'text-editor',
@@ -38,7 +38,7 @@ export class TextEditorComponent implements OnInit{
   @ViewChild('drawer')
     public drawer?;
     public isLoading = false;
-  @ViewChild(ExamsComponent) examsComponent: ExamsComponent;
+  @ViewChild(AiReportComponent) aiReportComponent: AiReportComponent;
     
     // load your default document here
     
@@ -65,15 +65,14 @@ export class TextEditorComponent implements OnInit{
         this.container.documentEditor.selection.selectAll(); 
     let content = this.container.documentEditor.selection.text;
     let reportContent = {
-      sentence: content,
-      description: 'test',
+      fullBody: content,
     }
 
 
     try {
       document.getElementById("overlay").style.display = "block";
       this.isLoading = true; // Set isLoading to true to display loading icon
-      await this.textEditorApi.saveExam(reportContent).toPromise(); // Assuming saveExam returns an Observable
+      await this.textEditorApi.saveBodyForAiReport(reportContent).toPromise(); // Assuming saveExam returns an Observable
     } catch (error) {
       alert(error.message);
     } finally {
@@ -82,13 +81,13 @@ export class TextEditorComponent implements OnInit{
     }
 
     this.drawer.toggle();
-    this.examsComponent.countNumSentences(content)
-    this.examsComponent.ngOnInit();
+    this.aiReportComponent.countNumSentences(content)
+    this.aiReportComponent.ngOnInit();
   }
 
   close(){
     this.drawer.toggle();
-    this.examsComponent.ngOnDestroy();
+    this.aiReportComponent.ngOnDestroy();
   }
 
   // this method will be completed when integrated with approvers
@@ -98,13 +97,5 @@ export class TextEditorComponent implements OnInit{
 
   requestPDFDownload(){
     this.requestDownloadService.openPopup(this);
-  }
-
-  turnOn() {
-    document.getElementById("overlay").style.display = "block";
-  }
-  
-  off() {
-    document.getElementById("overlay").style.display = "none";
   }
 }

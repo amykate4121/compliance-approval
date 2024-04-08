@@ -9,7 +9,7 @@ import { TextEditorComponent } from './text-editor/text-editor.component';
 import { EmailFormComponent } from './email-form/email-form.component';
 import { ApprovalPageComponent } from './approval-page/approval-page.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ExamsComponent } from './exams/exams.component';
+import { AiReportComponent } from './ai-report/ai-report.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
@@ -21,7 +21,7 @@ const routes: Routes = [
   // { path: 'nav', component: NavBarComponent },
   { path: '', component: LoadingPageComponent},
   // { path: 'email', component: EmailFormComponent},
-  { path: 'exam', component: ExamsComponent},
+  { path: 'ai-report', component: AiReportComponent},
   // { path: 'home', component: HomeComponent, canLoad:[AuthGuard]},
   { path: 'text-editor', component: TextEditorComponent, canLoad:[AuthGuard]},
   { path: 'approval-page', component: ApprovalPageComponent, canLoad:[AuthGuard]},
