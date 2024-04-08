@@ -1,6 +1,6 @@
 export class Exam {
     constructor(
-      public title: string,
+      public sentence: string,
       public description: string,
       public _id?: number,
       public updatedAt?: Date,

@@ -65,7 +65,7 @@ export class TextEditorComponent implements OnInit{
         this.container.documentEditor.selection.selectAll(); 
     let content = this.container.documentEditor.selection.text;
     let reportContent = {
-      title: content,
+      sentence: content,
       description: 'test',
     }
 
