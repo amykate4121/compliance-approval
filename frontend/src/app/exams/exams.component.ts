@@ -31,14 +31,12 @@ export class ExamsComponent implements OnInit, OnDestroy {
         },
         console.error
       );
-    
-    if(this.examsList.length == 0){
-      this.empty = true
-    }
   }
 
   ngOnDestroy() {
-    this.chart.destroy()
+    if(this.chart != null){
+      this.chart.destroy();
+    }
     this.examsListSubs.unsubscribe();
   }
 
@@ -82,13 +80,17 @@ export class ExamsComponent implements OnInit, OnDestroy {
   }],
       },
       options: {
-        aspectRatio:2.5
+        maintainAspectRatio: true,
+        aspectRatio:3
       }
 
     });
   }
 
   resetInformation(){
+    if(this.chart != null){
+      this.chart.destroy();
+    }
     this.bearish = 0;
     this.bullish = 0;
     this.other = 0;

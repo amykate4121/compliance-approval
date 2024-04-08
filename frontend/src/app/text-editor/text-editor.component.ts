@@ -56,6 +56,7 @@ export class TextEditorComponent implements OnInit{
     }
     if (!(this.getProfile().name).includes('@qmul.ac.uk')){
       this.router.navigate(['/unauthorised-access']);
+      return;
     }
   }
 // AMY EDIT HERE

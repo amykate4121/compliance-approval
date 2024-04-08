@@ -6,7 +6,7 @@
   <canvas  id="MyChart" >{{ chart }}</canvas>
 </div>
 
-<div *ngIf="!(examsList.length == 0)">
+<div *ngIf="examsList!=[] && !(examsList.length == 0)">
   <table class="styled-table">
     <thead>
         <tr>
@@ -23,7 +23,7 @@
 </table>
 </div> 
 
-<div *ngIf="(examsList.length == 0)">
+<div *ngIf="examsList == [] || (examsList.length == 0)">
   <p class="message3"> No Compliance Issues Detected </p>
 </div>
 
