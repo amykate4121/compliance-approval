@@ -6,21 +6,24 @@ from .entity import Entity, Base
 
 
 class Exam(Entity, Base):
-    __tablename__ = 'exams'
+    __tablename__ = 'report'
 
-    title = Column(String)
+    sentence = Column(String)
     description = Column(String)
+    fullBody = Column(String)
 
-    def __init__(self, title, description, created_by):
+    def __init__(self, sentence, description, fullBody, created_by):
         Entity.__init__(self, created_by)
-        self.title = title
+        self.sentence = sentence
         self.description = description
+        self.fullBody = fullBody
 
 # AMY EDIT HERE
 class ExamSchema(Schema):
     id = fields.Number()
-    title = fields.Str()
+    sentence = fields.Str()
     description = fields.Str()
+    fullBody = fields.Str()
     created_at = fields.DateTime()
     updated_at = fields.DateTime()
     last_updated_by = fields.Str()

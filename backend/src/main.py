@@ -47,10 +47,10 @@ def add_exam():
     session.close()
 
     # mount exam object
-    posted_exam = ExamSchema(only=('title', 'description'))\
+    posted_exam = ExamSchema(only=('sentence', 'description', 'fullBody'))\
         .load(request.get_json())
 
-    body = posted_exam.get('title')
+    body = posted_exam.get('sentence')
 
     # AMY CHANGE TO BE ACC REPORT
     # body = 'Please note that all information in this report is fictionalised. Example Google Report.  I work at Google. My experience so far at work has been awful.  This report will focus on team x at Google.  Agile is an software development lifecycle that allows for periodic feedback from users.  I think that the current approach of the team is awful. The team dont bother considering the needs of users.  One suggestion is that an agile approach is adopted.'
@@ -93,14 +93,14 @@ def add_exam():
     exam = ''
     # post each finding of the ner report and save it
     for concern in concerns:
-        posted_exam = {'title': concern.get('concerningSentence'), 'description': concern.get('issue')}
+        posted_exam = {'sentence': concern.get('concerningSentence'), 'description': concern.get('issue'), 'fullBody': body}
         exam = Exam(**posted_exam, created_by="HTTP post request")
         session.add(exam)
         session.commit()
 
     # post each finding of the ner report and save it
     for label in labels:
-        posted_exam = {'title': label.get('concerningSentence'), 'description': label.get('issue')}
+        posted_exam = {'sentence': label.get('concerningSentence'), 'description': label.get('issue'), 'fullBody': body}
         exam = Exam(**posted_exam, created_by="HTTP post request")
         session.add(exam)
         session.commit()
