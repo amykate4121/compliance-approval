@@ -81,11 +81,13 @@ export class TextEditorComponent implements OnInit{
     }
 
     this.drawer.toggle();
+    this.examsComponent.countNumSentences(content)
     this.examsComponent.ngOnInit();
   }
 
   close(){
     this.drawer.toggle();
+    this.examsComponent.ngOnDestroy();
   }
 
   // this method will be completed when integrated with approvers

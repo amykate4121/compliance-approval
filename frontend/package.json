@@ -26,6 +26,7 @@
     "@syncfusion/ej2-material-theme": "^24.2.8",
     "@syncfusion/ej2-richtexteditor": "^24.2.9",
     "auth0-web": "^1.7.0",
+    "chart.js": "^4.4.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

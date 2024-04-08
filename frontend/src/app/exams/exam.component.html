@@ -1,4 +1,12 @@
-<div *ngIf="!empty">
+<div>
+  <p class="message2"> AI Compliance Detection Report </p>
+</div>
+
+<div class="chart-container" align="center" width="500px">
+  <canvas  id="MyChart" >{{ chart }}</canvas>
+</div>
+
+<div *ngIf="!(examsList.length == 0)">
   <table class="styled-table">
     <thead>
         <tr>
@@ -15,8 +23,8 @@
 </table>
 </div> 
 
-<div *ngIf="empty">
-  <h1 class="centre"> No Compliance Issues Detected </h1>
+<div *ngIf="(examsList.length == 0)">
+  <p class="message3"> No Compliance Issues Detected </p>
 </div>
 
 <div class="note">
