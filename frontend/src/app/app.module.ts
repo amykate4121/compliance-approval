@@ -12,7 +12,7 @@ import {RouterModule, Routes} from '@angular/router';
 import { AuthGuard, AuthModule } from '@auth0/auth0-angular';
 import { TextEditorComponent } from './text-editor/text-editor.component';
 import { DocumentEditorModule, DocumentEditorContainerModule, ToolbarService } from '@syncfusion/ej2-angular-documenteditor';
-import { EmailFormComponent } from './email-form/email-form.component';
+// import { EmailFormComponent } from './email-form/email-form.component';
 import { ApprovalPageComponent } from './approval-page/approval-page.component';
 import { RequestApprovalComponent } from './request-approval/request-approval.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -49,7 +49,7 @@ const appRoutes: Routes = [
     NavBarComponent,
     // HomeComponent,
     TextEditorComponent,
-    EmailFormComponent,
+    // EmailFormComponent,
     AiReportComponent,
     ApprovalPageComponent,
     RequestApprovalComponent,

@@ -6,7 +6,7 @@ import { LoadingPageComponent } from './loading-page/loading-page.component';
 // import { AuthGuard } from './auth/auth-guard.service';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { TextEditorComponent } from './text-editor/text-editor.component';
-import { EmailFormComponent } from './email-form/email-form.component';
+// import { EmailFormComponent } from './email-form/email-form.component';
 import { ApprovalPageComponent } from './approval-page/approval-page.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AiReportComponent } from './ai-report/ai-report.component';

@@ -24,5 +24,6 @@ export class ApproveService {
     var sendEmail = document.createElement('a');
     sendEmail.href = mail;
     sendEmail.click();
+    this.dialog.closeAll();
   }
 }

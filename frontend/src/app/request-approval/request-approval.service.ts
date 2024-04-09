@@ -31,5 +31,6 @@ export class RequestApprovalService {
     var sendEmail = document.createElement('a');
     sendEmail.href = mail;
     sendEmail.click();
+    this.dialog.closeAll();
   }
 }

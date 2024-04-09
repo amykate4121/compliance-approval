@@ -76,6 +76,6 @@ export class RequestDownloadService {
             };
           }, 500);
         }
-
+        this.dialog.closeAll();
   }
 }
