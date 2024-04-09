@@ -21,7 +21,7 @@ export class AiReportApiService {
   // GET list of public, future events
   getAiReport(): Observable<AiReport[]> {
     return this.http
-      .get<AiReport[]>(`${API_URL}/exams`)
+      .get<AiReport[]>(`${API_URL}/ai-report`)
       .pipe(catchError(AiReportApiService._handleError));
   }
 }

@@ -27,6 +27,6 @@ export class TextEditorApi {
       })
     };
     return this.http
-      .post(`${API_URL}/exams`, aiReport, httpOptions);
+      .post(`${API_URL}/ai-report`, aiReport, httpOptions);
   }
 }

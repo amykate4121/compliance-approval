@@ -5,7 +5,7 @@ from marshmallow import Schema, fields
 from .entity import Entity, Base
 
 
-class Exam(Entity, Base):
+class AiReport(Entity, Base):
     __tablename__ = 'report'
 
     sentence = Column(String)
@@ -19,7 +19,7 @@ class Exam(Entity, Base):
         self.fullBody = fullBody
 
 # AMY EDIT HERE
-class ExamSchema(Schema):
+class AiReportSchema(Schema):
     id = fields.Number()
     sentence = fields.Str()
     description = fields.Str()

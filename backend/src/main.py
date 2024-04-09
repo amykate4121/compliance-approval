@@ -3,7 +3,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from .entities.entity import Session, engine, Base
-from .entities.exam import Exam, ExamSchema
+from .entities.report import AiReport, AiReportSchema
 from .auth import AuthError, requires_auth
 
 
@@ -22,35 +22,35 @@ CORS(app)
 Base.metadata.create_all(engine)
 
 
-@app.route('/exams')
-def get_exams():
+@app.route('/ai-report')
+def getAiReport():
     # fetching from the database
     session = Session()
-    exam_objects = session.query(Exam).all()
+    fullReport = session.query(AiReport).all()
 
     # transforming into JSON-serializable objects
-    schema = ExamSchema(many=True)
-    exams = schema.dump(exam_objects)
+    schema = AiReportSchema(many=True)
+    report = schema.dump(fullReport)
 
     # serializing as JSON
     session.close()
-    return jsonify(exams)
+    return jsonify(report)
 
 
-@app.route('/exams', methods=['POST'])
+@app.route('/ai-report', methods=['POST'])
 @requires_auth
 # AMY EDIT HERE
-def add_exam():
+def addAiReport():
     session = Session()
-    session.query(Exam).delete()
+    session.query(AiReport).delete()
     session.commit()
     session.close()
 
     # mount exam object
-    posted_exam = ExamSchema(only=('sentence', 'description', 'fullBody'))\
+    newReport = AiReportSchema(only=('sentence', 'description', 'fullBody'))\
         .load(request.get_json())
 
-    body = posted_exam.get('sentence')
+    body = newReport.get('fullBody')
 
     # AMY CHANGE TO BE ACC REPORT
     # body = 'Please note that all information in this report is fictionalised. Example Google Report.  I work at Google. My experience so far at work has been awful.  This report will focus on team x at Google.  Agile is an software development lifecycle that allows for periodic feedback from users.  I think that the current approach of the team is awful. The team dont bother considering the needs of users.  One suggestion is that an agile approach is adopted.'
@@ -90,25 +90,25 @@ def add_exam():
             labels.append({'concerningSentence': sequence[i], 'issue': label})
 
     session = Session()
-    exam = ''
+    report = ''
     # post each finding of the ner report and save it
     for concern in concerns:
-        posted_exam = {'sentence': concern.get('concerningSentence'), 'description': concern.get('issue'), 'fullBody': body}
-        exam = Exam(**posted_exam, created_by="HTTP post request")
-        session.add(exam)
+        newReport = {'sentence': concern.get('concerningSentence'), 'description': concern.get('issue'), 'fullBody': body}
+        report = AiReport(**newReport, created_by="HTTP post request")
+        session.add(report)
         session.commit()
 
     # post each finding of the ner report and save it
     for label in labels:
-        posted_exam = {'sentence': label.get('concerningSentence'), 'description': label.get('issue'), 'fullBody': body}
-        exam = Exam(**posted_exam, created_by="HTTP post request")
-        session.add(exam)
+        newReport = {'sentence': label.get('concerningSentence'), 'description': label.get('issue'), 'fullBody': body}
+        report = AiReport(**newReport, created_by="HTTP post request")
+        session.add(report)
         session.commit()
 
-    # return created exam
-    new_exam = ExamSchema().dump(exam)
+    # return created report
+    addedReport = AiReportSchema().dump(report)
     # session.close()
-    return jsonify(new_exam), 201
+    return jsonify(addedReport), 201
 
 @app.errorhandler(AuthError)
 def handle_auth_error(ex):
