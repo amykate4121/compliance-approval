@@ -11,17 +11,18 @@ export class UnauthorisedAccessComponent {
   authenticated = false;
   apprentice = false;
   constructor(private router: Router ){}
+  // add auth0
   signIn = Auth0.signIn;
-  signOut = Auth0.signOut;
   getProfile = Auth0.getProfile;
 
+  // redirect to login if not authenticated
   ngOnInit(): void {
     Auth0.subscribe((authenticated) => (this.authenticated = authenticated));
-    if (this.authenticated == false){
+    if (this.authenticated == false) {
       this.signIn();
     }
 
-    if ((this.getProfile().name).includes('@qmul.ac.uk')){
+    if (this.getProfile().name.includes('@qmul.ac.uk')) {
       this.apprentice = true;
     }
   }

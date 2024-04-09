@@ -1,7 +1,9 @@
+<!-- apprentice text editor page -->
 <div>
   <nav-bar></nav-bar>
 </div>
 
+<!-- show loading page when loading -->
 <div id="overlay">
   <div class="center">
     <div class="loading-icon"></div>
@@ -9,58 +11,43 @@
   <h2> Generating AI report... </h2>
 </div>
 
-<mat-drawer-container
-  class="text-editor-container"
-  hasBackdrop="false"
->
+<mat-drawer-container class="text-editor-container" hasBackdrop="false">
+  <!-- side bar for AI report -->
   <mat-drawer #drawer mode="side" class="sidebar" position="end">
     <div align="end">
-      <button
-          class="primary-button"
-          id="close"
-          (click)="close()"
-        >
+      <button class="primary-button" id="close" (click)="close()">
         X
-        </button>
+      </button>
     </div>
     <ai-report></ai-report>
   </mat-drawer>
   <mat-drawer-content>
     <div class="padding">
-      <ejs-documenteditorcontainer
-        class="text-editor"
-        #documenteditor_default
+      <!-- actual doc editor -->
+      <ejs-documenteditorcontainer 
+        class="text-editor" 
+        #documenteditor_default 
         [enableToolbar]="true"
-        [showPropertiesPane]="false"
-        height="675px"
-        (created)="onCreate()"
+        [showPropertiesPane]="false" 
+        height="675px" 
+        (created)="onCreate()" 
         (documentChange)="onOpen()"
-        style="width: 100%; display: block"
+        style="width: 100%; 
+        display: block"
       ></ejs-documenteditorcontainer>
 
+      <!-- options apprentice has -->
       <div>
-        <button
-          class="primary-button"
-          id="generateReport"
-          (click)="generateReport()"
-        >
+        <button class="primary-button" id="generateReport" (click)="generateReport()">
           Generate Report
         </button>
-        <button
-          class="primary-button"
-          id="requestApproval"
-          (click)="requestApproval()"
-        >
+        <button class="primary-button" id="requestApproval" (click)="requestApproval()">
           Request Approval
         </button>
-        <button
-          class="primary-button"
-          id="requestDownload"
-          (click)="requestPDFDownload()"
-        >
+        <button class="primary-button" id="requestDownload" (click)="requestPDFDownload()">
           Request Download
         </button>
       </div>
-    </div>    
+    </div>
   </mat-drawer-content>
 </mat-drawer-container>

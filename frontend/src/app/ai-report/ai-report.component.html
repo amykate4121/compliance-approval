@@ -1,32 +1,35 @@
+<!-- information from the AI report -->
 <div>
   <p class="message2"> AI Compliance Detection Report </p>
 </div>
 
+<!-- display a graph of the information -->
 <div class="chart-container" align="center" width="500px">
-  <canvas  id="MyChart" >{{ chart }}</canvas>
+  <canvas id="AiReportChart">{{ chart }}</canvas>
 </div>
 
 <div *ngIf="aiReportList!=[] && !(aiReportList.length == 0)">
   <table class="styled-table">
     <thead>
-        <tr>
-            <th>Sentence</th>
-            <th>Concern</th>
-        </tr>
+      <tr>
+        <th>Sentence</th>
+        <th>Concern</th>
+      </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let aiReport of aiReportList">
-            <td>{{aiReport.sentence}}</td>
-            <td>{{aiReport.description}}</td>
-        </tr>
+      <tr *ngFor="let aiReport of aiReportList">
+        <td>{{aiReport.sentence}}</td>
+        <td>{{aiReport.description}}</td>
+      </tr>
     </tbody>
-</table>
-</div> 
+  </table>
+</div>
 
 <div *ngIf="aiReportList == [] || (aiReportList.length == 0)">
   <p class="message3"> No Compliance Issues Detected </p>
 </div>
 
 <div class="note">
-  Please remember that AI findings are not always entirely accurate and compliance concerns should still be considered carefully.
+  Please remember that AI findings are not always entirely accurate and compliance concerns should still be considered
+  carefully.
 </div>

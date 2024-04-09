@@ -1,3 +1,4 @@
+// Styles used throughout the entire application
 @import '../node_modules/@syncfusion/ej2-material-theme/styles/material.css';
 @import'../node_modules/@syncfusion/ej2-base/styles/material.css';
 @import'../node_modules/@syncfusion/ej2-icons/styles/material.css';
@@ -9,183 +10,178 @@
 @import'../node_modules/@syncfusion/ej2-popups/styles/material.css';
 @import'../node_modules/@syncfusion/ej2-richtexteditor/styles/material.css';
 
-  h1 {
-    color: #369;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 250%;
-  }
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+}
+
+h2 {
+  color: #dcf1ff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+  text-align: center;
+  margin: 10px;
+}
   
-  h2 {
-    color: #dcf1ff;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 250%;
-    text-align: center;
-    margin: 10px;
-  }
-    
-  h3 {
-    color: #369;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 200%;
-    text-align: center;
-    padding: 10px;
-  }
+h3 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 200%;
+  text-align: center;
+  padding: 10px;
+}
+
+h4 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+}
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
   
-  h4 {
-    color: #369;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 250%;
-  }
-  
-  * {
-    font-family: Arial, Helvetica, sans-serif;
-  }
-    
-  body {
-    margin: 2em;
-  }
-  
-  body, input[type="text"], button {
-    color: #333;
-    font-family: Cambria, Georgia, serif;
-  }
-  
-  .information {
-    background-color: #e6e6e6b5;
-    width: 650px;
-    height: fit-content;
-    position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto; 
-    padding: 25px;
-  }
-  
-  .user-input {
-    height: 30px;
-    width: 640px;
-    margin: 10px;
-  }
-  
-  .primary-button {
-    color: #ffffff;
-    background-color: #a8ccf4;
-    border-color: #a8ccf4;
-    font-family: sans-serif;
-    font-size: medium;
-    margin: 15px;
-    margin-left: 0px;
-  }
-  
-  .secondary-button {
-    color: #2b7fde;
-    background-color:#f5fbff;
-    border-color: #f5fbff;
-    font-family: sans-serif;
-    font-size: medium;
-    margin: 10px;
-  }
+body {
+  margin: 2em;
+}
 
-  .secondary-button-large {
-    color: #2b7fde;
-    background-color:#f5fbff;
-    border-color: #f5fbff;
-    font-family: sans-serif;
-    font-size: 135%;
-    margin-left: 262px;
-    margin-right: 262px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .bg {
-    position: fixed; 
-    top: -50%; 
-    left: -50.1%; 
-    width: 200%; 
-    height: 200%;
-  }
-  .bg img {
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    right: 0; 
-    bottom: 0; 
-    margin: auto; 
-    min-width: 50%;
-    min-height: 50%;
-    opacity: 85%;
-  }
+body, input[type="text"], button {
+  color: #333;
+  font-family: Cambria, Georgia, serif;
+}
 
-  .note{
-    color: #ff7777;
-    padding-left: 10px;
-    font-size: medium;
-  }
+.information {
+  background-color: #e6e6e6b5;
+  width: 650px;
+  height: fit-content;
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto; 
+  padding: 25px;
+}
 
-  .note-bold{
-    color: #ff7777;
-    font-size: medium;
-    font-weight: bold;
-  }
+.user-input {
+  height: 30px;
+  width: 640px;
+  margin: 10px;
+}
 
-  .error {
-    color: #ff7777;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: x-large;
-    font-weight: bold;
-    text-align: center;
-  }
-  
+.primary-button {
+  color: #ffffff;
+  background-color: #a8ccf4;
+  border-color: #a8ccf4;
+  font-family: sans-serif;
+  font-size: medium;
+  margin: 15px;
+  margin-left: 0px;
+}
 
-  .message{
-    color: #ffffff;
-    padding-left: 10px;
-    font-size: medium;
-  }
+.secondary-button {
+  color: #2b7fde;
+  background-color:#f5fbff;
+  border-color: #f5fbff;
+  font-family: sans-serif;
+  font-size: medium;
+  margin: 10px;
+}
 
-  .message2{
-    color: #4788d2;
-    text-align: center;
-    font-size: x-large;
-  }
+.secondary-button-large {
+  color: #2b7fde;
+  background-color:#f5fbff;
+  border-color: #f5fbff;
+  font-family: sans-serif;
+  font-size: 135%;
+  margin-left: 262px;
+  margin-right: 262px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
-  .message3{
-    color: #4788d2;
-    text-align: center;
-    font-size: large;
-  }
+.bg {
+  position: fixed; 
+  top: -50%; 
+  left: -50.1%; 
+  width: 200%; 
+  height: 200%;
+}
 
+.bg img {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  margin: auto; 
+  min-width: 50%;
+  min-height: 50%;
+  opacity: 85%;
+}
 
-  .padding{
-    margin-top: 45px;
-  }
+.note{
+  color: #ff7777;
+  padding-left: 10px;
+  font-size: medium;
+}
 
-  .large-padding{
-    margin-top: 75px;
-  }
+.note-bold{
+  color: #ff7777;
+  font-size: medium;
+  font-weight: bold;
+}
 
-  .text-editor{
-    width: 100%; 
-    display: block; 
-    height: 690px;
-  }
+.error {
+  color: #ff7777;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: x-large;
+  font-weight: bold;
+  text-align: center;
+}
 
+.message{
+  color: #ffffff;
+  padding-left: 10px;
+  font-size: medium;
+}
 
-  // center the div
+.message2{
+  color: #4788d2;
+  text-align: center;
+  font-size: x-large;
+}
+
+.message3{
+  color: #4788d2;
+  text-align: center;
+  font-size: large;
+}
+
+.padding{
+  margin-top: 45px;
+}
+
+.large-padding{
+  margin-top: 75px;
+}
+
+.text-editor{
+  width: 100%; 
+  display: block; 
+  height: 690px;
+}
+
 .center {
   padding-top: 20%;
   padding-left: 45%;
 }
 
-  // center the div
-  .center-button {
-    text-align: center;
-  }
+.center-button {
+  text-align: center;
+}
 
-// create a loading icon
 .loading-icon {
   border: 16px solid #e0edfb;
   border-radius: 50%;

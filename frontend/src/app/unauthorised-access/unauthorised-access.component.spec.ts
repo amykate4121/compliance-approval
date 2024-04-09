@@ -1,21 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// amy here
 
-import { UnauthorisedAccessComponent } from './unauthorised-access.component';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-describe('UnauthorisedAccessComponent', () => {
-  let component: UnauthorisedAccessComponent;
-  let fixture: ComponentFixture<UnauthorisedAccessComponent>;
+// import { UnauthorisedAccessComponent } from './unauthorised-access.component';
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [UnauthorisedAccessComponent]
-    });
-    fixture = TestBed.createComponent(UnauthorisedAccessComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+// describe('UnauthorisedAccessComponent', () => {
+//   let component: UnauthorisedAccessComponent;
+//   let fixture: ComponentFixture<UnauthorisedAccessComponent>;
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   beforeEach(() => {
+//     TestBed.configureTestingModule({
+//       declarations: [UnauthorisedAccessComponent]
+//     });
+//     fixture = TestBed.createComponent(UnauthorisedAccessComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
+
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });

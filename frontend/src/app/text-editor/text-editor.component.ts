@@ -2,20 +2,8 @@ import * as Auth0 from 'auth0-web';
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DocumentEditorContainerComponent, Toolbar, ToolbarService } from '@syncfusion/ej2-angular-documenteditor';
-import {
-  DocumentEditorComponent
-} from '@syncfusion/ej2-angular-documenteditor';
 import { RequestApprovalService } from '../request-approval/request-approval.service';
-import {
-  PdfBitmap,
-  PdfDocument,
-  PdfPageOrientation,
-  PdfPageSettings,
-  PdfSection,
-  SizeF,
-} from '@syncfusion/ej2-pdf-export';
 
-import { ImageFormat } from '@syncfusion/ej2-angular-documenteditor';
 import { RequestDownloadService } from '../request-download/request-download.service';
 import { TextEditorApi } from './text-editor.api';
 import { AiReportComponent } from '../ai-report/ai-report.component';
@@ -24,82 +12,92 @@ import { AiReportComponent } from '../ai-report/ai-report.component';
   selector: 'text-editor',
   templateUrl: './text-editor.component.html',
   styleUrls: ['./text-editor.component.scss'],
-  providers: [ToolbarService]
+  providers: [ToolbarService],
 })
-export class TextEditorComponent implements OnInit{
+// the apprentice text editor component
+export class TextEditorComponent implements OnInit {
   authenticated = false;
-  constructor(private requestApprovalService: RequestApprovalService, private requestDownloadService: RequestDownloadService, private textEditorApi: TextEditorApi, private router: Router ){}
+  constructor(
+    private requestApprovalService: RequestApprovalService,
+    private requestDownloadService: RequestDownloadService,
+    private textEditorApi: TextEditorApi,
+    private router: Router
+  ) {}
   signIn = Auth0.signIn;
-  signOut = Auth0.signOut;
   getProfile = Auth0.getProfile;
+
   @ViewChild('documenteditor_default')
-    public container?: DocumentEditorContainerComponent;
-
+  public container?: DocumentEditorContainerComponent;
   @ViewChild('drawer')
-    public drawer?;
-    public isLoading = false;
+  public drawer?;
+  public isLoading = false;
   @ViewChild(AiReportComponent) aiReportComponent: AiReportComponent;
-    
-    // load your default document here
-    
-    onCreate(): any {
-          let sfdt: string = `{"sections":[{"sectionFormat":{},"blocks":[{"paragraphFormat":{},"characterFormat":{},"inlines":[{"characterFormat":{},"text":"These materials are confidential and may not be used, edited, altered, reproduced, published or distributed without consent."}]}]}]}`;
-          // open the default document.
-          (this.container as DocumentEditorContainerComponent ).documentEditor.open(sfdt);
-    }
 
-    onOpen(): any {
-      (this.container as DocumentEditorContainerComponent ).documentEditor.showRestrictEditingPane(false);
-    }
+  // load default document on creation
+  // contains compliance information that MUST be included 
+  onCreate(): any {
+    let sfdt: string = `{"sections":[{"sectionFormat":{},"blocks":[{"paragraphFormat":{},"characterFormat":{},"inlines":[{"characterFormat":{},"text":"These materials are confidential and may not be used, edited, altered, reproduced, published or distributed without consent."}]}]}]}`;
+    (this.container as DocumentEditorContainerComponent).documentEditor.open(
+      sfdt
+    );
+  }
 
-  // fix this to ensure user can't open if they arent logged in
+  // don't show any surplus information
+  onOpen(): any {
+    (this.container as DocumentEditorContainerComponent).documentEditor.showRestrictEditingPane(false);
+  }
+
+  // redirect if not authenticated, or if they should not be able to access
   ngOnInit(): void {
     Auth0.subscribe((authenticated) => (this.authenticated = authenticated));
-    if (this.authenticated == false){
+    if (this.authenticated == false) {
       this.signIn();
     }
-    if (!(this.getProfile().name).includes('@qmul.ac.uk')){
+    if (!this.getProfile().name.includes('@qmul.ac.uk')) {
       this.router.navigate(['/unauthorised-access']);
       return;
     }
   }
-// AMY EDIT HERE
-// CALL GET AFTER POSTING TO ACTUALLY MAKE SURE IT UPDATES
-  async generateReport() { 
-        this.container.documentEditor.selection.selectAll(); 
+  //  generate the AI report
+  async generateReport() {
+    // get full report content
+    this.container.documentEditor.selection.selectAll();
     let content = this.container.documentEditor.selection.text;
     let reportContent = {
       fullBody: content,
-    }
+    };
 
-
+    // save the report body, showing loading whilst it saves
     try {
-      document.getElementById("overlay").style.display = "block";
-      this.isLoading = true; // Set isLoading to true to display loading icon
-      await this.textEditorApi.saveBodyForAiReport(reportContent).toPromise(); // Assuming saveExam returns an Observable
+      document.getElementById('overlay').style.display = 'block';
+      this.isLoading = true;
+      await this.textEditorApi.saveBodyForAiReport(reportContent).toPromise();
     } catch (error) {
       alert(error.message);
     } finally {
-      document.getElementById("overlay").style.display = "none";
-      this.isLoading = false; // Reset isLoading to false once operation is complete (whether success or error)
+      document.getElementById('overlay').style.display = 'none';
+      this.isLoading = false;
     }
 
+    // open drawer containing results of ai report
     this.drawer.toggle();
-    this.aiReportComponent.countNumSentences(content)
+    this.aiReportComponent.countNumSentences(content);
     this.aiReportComponent.ngOnInit();
   }
 
-  close(){
+  // close the ai report
+  close() {
     this.drawer.toggle();
     this.aiReportComponent.ngOnDestroy();
   }
 
-  // this method will be completed when integrated with approvers
-  requestApproval(){
+  // pop up to email approvers
+  requestApproval() {
     this.requestApprovalService.openPopup(this.container);
   }
 
-  requestPDFDownload(){
+  // open pop up to download a pdf
+  requestPDFDownload() {
     this.requestDownloadService.openPopup(this);
   }
 }
