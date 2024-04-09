@@ -48,6 +48,10 @@ export class TextEditorComponent implements OnInit{
           (this.container as DocumentEditorContainerComponent ).documentEditor.open(sfdt);
     }
 
+    onOpen(): any {
+      (this.container as DocumentEditorContainerComponent ).documentEditor.showRestrictEditingPane(false);
+    }
+
   // fix this to ensure user can't open if they arent logged in
   ngOnInit(): void {
     Auth0.subscribe((authenticated) => (this.authenticated = authenticated));

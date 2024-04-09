@@ -58,9 +58,9 @@ def addAiReport():
 
     # load the finetuned models
     nerTokenizer = AutoTokenizer.from_pretrained("dslim/bert-base-NER")
-    nerModel = AutoModelForTokenClassification.from_pretrained("C:/Users/amyka/Documents/year 4/Dissertation/compliance-approval-portal/backend/src/savedModels/ner")
+    nerModel = AutoModelForTokenClassification.from_pretrained("./src/savedModels/ner")
     sequenceTokenizer = AutoTokenizer.from_pretrained("finiteautomata/bertweet-base-sentiment-analysis")
-    sequenceModel = AutoModelForSequenceClassification.from_pretrained("C:/Users/amyka/Documents/year 4/Dissertation/compliance-approval-portal/backend/src/savedModels/sequence")
+    sequenceModel = AutoModelForSequenceClassification.from_pretrained("./src/savedModels/sequence")
 
     # run the ner model to find concerns
     nerPipeline = pipeline("ner", model=nerModel, tokenizer=nerTokenizer)

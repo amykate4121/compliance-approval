@@ -2,6 +2,7 @@
 # Due to memory errors, this code was run using a google colab using a TPU
 # Colab supports running a runtime for 12 hours, therefore models were saved locally every 12 hours and loaded from local to continue training
 # Saved models were then downloaded and saved locally
+# This code is also used for evaluating the models
 
 from datasets import load_dataset
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, AutoModelForTokenClassification, TrainingArguments, Trainer, pipeline, DataCollatorForTokenClassification

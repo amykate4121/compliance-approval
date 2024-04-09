@@ -22,7 +22,7 @@ export class ApprovalPageComponent {
 
   public commentsOnly(): void {
     //enforce protection
-    this.container.documentEditor.editor.enforceProtection('123', 'CommentsOnly');
+    this.container.documentEditor.editor.enforceProtection('credential', 'CommentsOnly');
   }
   ngOnInit(): void {
     Auth0.subscribe((authenticated) => (this.authenticated = authenticated));

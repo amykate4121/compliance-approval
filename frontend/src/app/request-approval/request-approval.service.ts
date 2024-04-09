@@ -23,7 +23,7 @@ export class RequestApprovalService {
 
   sendEmail(e, container) {
     e.preventDefault();
-    (container as DocumentEditorContainerComponent ).documentEditor.save('downloaded report', 'Sfdt')
+    (container as DocumentEditorContainerComponent).documentEditor.save('Downloaded Report For Approval', 'Sfdt')
     const approver1 = (<HTMLInputElement>document.getElementById('app1')).value
     const approver2 = (<HTMLInputElement>document.getElementById('app2')).value
     const approver3 = (<HTMLInputElement>document.getElementById('app3')).value
