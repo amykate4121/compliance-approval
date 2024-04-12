@@ -10,17 +10,19 @@ import {
   PdfSection,
   SizeF,
 } from '@syncfusion/ej2-pdf-export';
-
 import { ImageFormat } from '@syncfusion/ej2-angular-documenteditor';
 
 @Injectable({
   providedIn: 'root',
 })
+// form to download as a pdf after apprentice has received three approvals
 export class RequestDownloadService {
   constructor(private dialog: MatDialog) {}
   public form;
   public textEditor?: DocumentEditorContainerComponent;
 
+  // open the pop up to request download
+  // set up what happens on button click
   openPopup(textEditor) {
     this.textEditor = textEditor;
     this.dialog.open(RequestDownloadComponent, {
@@ -34,50 +36,60 @@ export class RequestDownloadService {
     });
   }
 
-  // AMY tidy and make it look like you
-  // reference this?
-  downloadPDF(e, textEditor) {
-    e.preventDefault();
-    let obj = textEditor;
-    let pdfdocument: PdfDocument = new PdfDocument();
-    let count: number = obj.container.documentEditor.pageCount;
-    obj.container.documentEditor.documentEditorSettings.printDevicePixelRatio = 2;
+  // get the conent of the report and save it as a pdf document
+  // there is no inbuilt functionality for this and therefore each page is treated as an image
+  downloadPDF(event, textEditor) {
+    event.preventDefault();
+    // let documentEditor = textEditor.contatiner.documentEditor;
+
+    // create a blank pdf
+    let pdfDocument: PdfDocument = new PdfDocument();
+    let numPages: number = textEditor.container.documentEditor.pageCount;
+    textEditor.container.documentEditor.documentEditorSettings.printDevicePixelRatio = 2;
+
+    // iterate through each page one by one and turn this into an image
     let loadedPage = 0;
-    for (let i = 1; i <= count; i++) {
-      setTimeout(() => {
-        let format: ImageFormat = 'image/jpeg' as ImageFormat;
-        // Getting pages as image
-        let image = obj.container.documentEditor.exportAsImage(i, format);
-        image.onload = function () {
-          let imageHeight = parseInt(
-            image.style.height.toString().replace('px', '')
-          );
-          let imageWidth = parseInt(
-            image.style.width.toString().replace('px', '')
-          );
-          let section: PdfSection = pdfdocument.sections.add() as PdfSection;
-          let settings: PdfPageSettings = new PdfPageSettings(0);
-          if (imageWidth > imageHeight) {
-            settings.orientation = PdfPageOrientation.Landscape;
-          }
-          settings.size = new SizeF(imageWidth, imageHeight);
-          (section as PdfSection).setPageSettings(settings);
-          let page = section.pages.add();
-          let graphics = page.graphics;
-          let imageStr = image.src.replace('data:image/jpeg;base64,', '');
-          let pdfImage = new PdfBitmap(imageStr);
-          graphics.drawImage(pdfImage, 0, 0, imageWidth, imageHeight);
-          loadedPage++;
-          if (loadedPage == count) {
-            // Exporting the document as pdf
-            pdfdocument.save(
-              (obj.container.documentEditor.documentName === ''
-                ? 'PDF Report'
-                : obj.container.documentEditor.documentName) + '.pdf'
-            );
-          }
-        };
-      }, 500);
+    for (let pageNum = 1; pageNum <= numPages; pageNum++) {
+      let imageFormat: ImageFormat = 'image/jpeg' as ImageFormat;
+      let pageAsImage = textEditor.container.documentEditor.exportAsImage(
+        pageNum,
+        imageFormat
+      );
+
+      // save height and width of image to determine orientation
+      pageAsImage.onload = function () {
+        let imageHeight = parseInt(
+          pageAsImage.style.height.toString().replace('px', '')
+        );
+        let imageWidth = parseInt(
+          pageAsImage.style.width.toString().replace('px', '')
+        );
+
+        // speficy the actual layout of the page
+        let settings: PdfPageSettings = new PdfPageSettings(0);
+        settings.size = new SizeF(imageWidth, imageHeight);
+        // default orientation is portrait, alter if needed
+        if (imageWidth > imageHeight) {
+          settings.orientation = PdfPageOrientation.Landscape;
+        }
+
+        // add this new created page to the pdf
+        let section: PdfSection = pdfDocument.sections.add() as PdfSection;
+        (section as PdfSection).setPageSettings(settings);
+        let page = section.pages.add();
+
+        // add the image to the page, covers the full page
+        let graphics = page.graphics;
+        let imageStr = pageAsImage.src.replace('data:image/jpeg;base64,', '');
+        let pdfImage = new PdfBitmap(imageStr);
+        graphics.drawImage(pdfImage, 0, 0, imageWidth, imageHeight);
+        loadedPage++;
+
+        // after adding every page, save the doc
+        if (loadedPage == numPages) {
+          pdfDocument.save('PDF Report For Submission.pdf');
+        }
+      };
     }
     this.dialog.closeAll();
   }

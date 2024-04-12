@@ -5,7 +5,8 @@ from sqlalchemy import create_engine, Column, String, Integer, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-# AMY EDIT HERE
+# link to the db
+# this is how ai reports are created and saved
 db_url = 'localhost:5432'
 db_name = 'cap'
 db_user = 'postgres'
@@ -16,6 +17,7 @@ Session = sessionmaker(bind=engine)
 Base = declarative_base()
 
 
+# create columns in the table
 class Entity():
     id = Column(Integer, primary_key=True)
     created_at = Column(DateTime)

@@ -1,7 +1,8 @@
+<!-- page for the approver to approve -->
 <h2>Approval Form</h2>
 <form id="approvalForm">
-  <input class="user-input" id="email" type="email" name = "Apprentice Email" placeholder="Apprentice Email" required>
-  <p></p>
+  <input class="user-input" id="email" type="email" name="Apprentice Email" placeholder="Apprentice Email" required>
+  <!-- ensure that the user understands what is required for something to be considered compliant -->
   <p class="message">I confirm that... </p>
   <p class="message"><input type="checkbox" id="condition1" required>The report is fully compliant</p>
   <p class="message"><input type="checkbox" id="condition2" required>A disclaimer is included on page 1</p>
@@ -9,9 +10,12 @@
   <p class="message"><input type="checkbox" id="condition4" required>Company names are not used throughout</p>
   <p class="message"><input type="checkbox" id="condition5" required>System names are not used throughout</p>
   <p class="message"><input type="checkbox" id="condition6" required>People and teams are not named throughout</p>
-  <p class="message"><input type="checkbox" id="condition7" required>Code snippets and screenshots do not include proprietary information</p>
-  <p class="message"><input type="checkbox" id="condition8" required>No sensitive or material non-public information is included</p>
+  <p class="message"><input type="checkbox" id="condition7" required>Code snippets and screenshots do not include
+    proprietary information</p>
+  <p class="message"><input type="checkbox" id="condition8" required>No sensitive or material non-public information is
+    included</p>
 
+  <!-- allow user to submit this appproval -->
   <p class="note">Please send the email in the pop up that opens to notify the apprentice.</p>
   <div class="center-button">
     <button class="secondary-button" type="submit">Approve</button>

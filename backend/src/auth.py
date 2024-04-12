@@ -1,10 +1,12 @@
+# code replicated from Krebs, 2018
 import json
 from flask import request
 from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
 
-
+# set up auth0
+# this is used for login and signup of users
 AUTH0_DOMAIN = 'dev-na28whcishipj6up.us.auth0.com'
 ALGORITHMS = ['RS256']
 API_AUDIENCE = 'https://approval-portal/'
@@ -15,10 +17,8 @@ class AuthError(Exception):
         self.error = error
         self.status_code = status_code
 
-
-def get_token_auth_header():
-    """Obtains the Access Token from the Authorization Header
-    """
+# get auth token of a loged in user
+def getTokenFromAuthHeader():
     auth = request.headers.get('Authorization', None)
     if not auth:
         raise AuthError({
@@ -49,14 +49,11 @@ def get_token_auth_header():
     token = parts[1]
     return token
 
-
-def requires_auth(f):
-    """Determines if the Access Token is valid
-    """
-
+# check if auth header is valid
+def requiresAuth(f):
     @wraps(f)
     def decorated(*args, **kwargs):
-        token = get_token_auth_header()
+        token = getTokenFromAuthHeader()
         jsonurl = urlopen(f'https://{AUTH0_DOMAIN}/.well-known/jwks.json')
         jwks = json.loads(jsonurl.read())
         unverified_header = jwt.get_unverified_header(token)

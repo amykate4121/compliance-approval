@@ -5,7 +5,11 @@ import numpy as np
 from transformers import AutoTokenizer, AutoModelForTokenClassification
 from transformers import pipeline
 
-# AMY CHANGE TO BE ACC REPORT
+# THIS CODE IS UTALISED IN MAIN.PY
+# THIS CLASS WAS FOR INITIAL EXPERIMENTATION WITH THE MODEL
+# HAS ALSO BEEN USED FOR TESTING
+
+# example body of report
 example = 'These materials are confidential and may not be used, edited, altered, reproduced, published or distributed without consent. Please note that all information in this report is fictionalised. Example Google Report.  I work at Google. My experience so far at work has been awful.  This report will focus on team x at Google.  Agile is an software development lifecycle that allows for periodic feedback from users.  I think that the current approach of the team is awful. The team dont bother considering the needs of users.  One suggestion is that an agile approach is adopted.'
 sequence = example.split('. ')
 

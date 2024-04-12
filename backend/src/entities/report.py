@@ -6,8 +6,9 @@ from .entity import Entity, Base
 
 
 class AiReport(Entity, Base):
+    # create table in db
     __tablename__ = 'report'
-
+    # specify columns in table relating to db
     sentence = Column(String)
     description = Column(String)
     fullBody = Column(String)
@@ -18,7 +19,7 @@ class AiReport(Entity, Base):
         self.description = description
         self.fullBody = fullBody
 
-# AMY EDIT HERE
+# specify schema of report
 class AiReportSchema(Schema):
     id = fields.Number()
     sentence = fields.Str()
