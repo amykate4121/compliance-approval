@@ -13,7 +13,7 @@ import { AiReport } from '../ai-report/ai-report.model';
 @Injectable()
 // links to the backend
 export class TextEditorApi {
-  constructor(private http: HttpClient) {}
+  constructor(public http: HttpClient) {}
   private static _handleError(err: HttpErrorResponse | any) {
     return throwError(
       () => err.message || 'Error: Unable to complete request.'

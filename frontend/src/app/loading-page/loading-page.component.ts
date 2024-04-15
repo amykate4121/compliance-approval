@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
 import * as Auth0 from 'auth0-web';
 
 @Component({
@@ -12,7 +11,7 @@ export class LoadingPageComponent implements OnInit {
   signIn = Auth0.signIn;
 
   // redirect user to log in page
-  constructor(public auth: AuthService) {}
+  constructor() {}
   ngOnInit(): void {
     this.signIn();
   }

@@ -1,23 +1,55 @@
-// amy here
+import { UserProfile } from 'auth0-web/src/profile';
+import { UnauthorisedAccessComponent } from './unauthorised-access.component';
 
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
+// check unauthorised users are redirected
+describe('UnauthorisedAccessComponent', () => {
+  let component: UnauthorisedAccessComponent;
 
-// import { UnauthorisedAccessComponent } from './unauthorised-access.component';
+  beforeEach(() => {
+    component = new UnauthorisedAccessComponent();
+  });
 
-// describe('UnauthorisedAccessComponent', () => {
-//   let component: UnauthorisedAccessComponent;
-//   let fixture: ComponentFixture<UnauthorisedAccessComponent>;
+  // check component is created
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 
-//   beforeEach(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [UnauthorisedAccessComponent]
-//     });
-//     fixture = TestBed.createComponent(UnauthorisedAccessComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
+  // check sign in is called if not authenticated, using a mock user
+  it('should call signIn if not authenticated', () => {
+    spyOn(component, 'signIn');
+    const user: UserProfile = {
+      name: 'test@qmul.ac.uk',
+      email: '',
+      userId: '',
+    };
+    spyOn(component, 'getProfile').and.returnValue(user);
+    component.ngOnInit();
+    expect(component.signIn).toHaveBeenCalled();
+  });
 
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
+  // ensure that an apprentice is correctly identified by their account
+  it('should set apprentice to true if profile email is from @qmul.ac.uk', () => {
+    spyOn(component, 'signIn');
+    const user: UserProfile = {
+      name: 'test@qmul.ac.uk',
+      email: '',
+      userId: '',
+    };
+    spyOn(component, 'getProfile').and.returnValue(user);
+    component.ngOnInit();
+    expect(component.apprentice).toBeTruthy();
+  });
+
+  // ensure that an approver is correctly identified by their account
+  it('should set apprentice to false if profile email is NOT from @qmul.ac.uk', () => {
+    spyOn(component, 'signIn');
+    const user: UserProfile = {
+      name: 'test@gmail.com',
+      email: '',
+      userId: '',
+    };
+    spyOn(component, 'getProfile').and.returnValue(user);
+    component.ngOnInit();
+    expect(component.apprentice).toBeFalsy();
+  });
+});

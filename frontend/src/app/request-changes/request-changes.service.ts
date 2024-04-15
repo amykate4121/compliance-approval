@@ -21,9 +21,11 @@ export class RequestChangesService {
     });
     this.form = document.getElementById('changesRequestForm');
 
-    this.form.addEventListener('submit', (event) => {
-      this.sendRequest(event, this.container);
-    });
+    if (this.form) {
+      this.form.addEventListener('submit', (event) => {
+        this.sendRequest(event, this.container);
+      });
+    }
   }
 
   // download and open email pop up

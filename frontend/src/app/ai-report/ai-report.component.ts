@@ -12,16 +12,16 @@ import Chart from 'chart.js/auto';
 // the ai report panel
 export class AiReportComponent implements OnInit, OnDestroy {
   // subscribe to monitor the ai report backend
-  aiReportListSubs: Subscription;
-  aiReportList: AiReport[];
+  public aiReportListSubs: Subscription;
+  public aiReportList: AiReport[];
 
   // track the information to display in the graph
-  numSentences = 0;
-  bearish = 0;
-  bullish = 0;
-  other = 0;
-  fineSentences = 0;
-  chart: any;
+  public numSentences = 0;
+  public bearish = 0;
+  public bullish = 0;
+  public other = 0;
+  public fineSentences = 0;
+  public chart: any;
 
   constructor(private aiReportApi: AiReportApiService) {}
 
@@ -55,7 +55,7 @@ export class AiReportComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.fineSentences =this.numSentences - this.bullish - this.bearish - this.other;
+    this.fineSentences = this.numSentences - this.bullish - this.bearish - this.other;
     this.createChart();
   }
 

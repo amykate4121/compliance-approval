@@ -1,22 +1,24 @@
-// amy here
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialog } from '@angular/material/dialog';
+import { RequestDownloadComponent } from './request-download.component';
 
-// import { RequestDownloadComponent } from './request-download.component';
+// check pop up interaction
+describe('RequestDownloadComponent', () => {
+  let component: RequestDownloadComponent;
+  let matDialog: MatDialog;
 
-// describe('RequestApprovalComponent', () => {
-//   let component: RequestDownloadComponent;
-//   let fixture: ComponentFixture<RequestDownloadComponent>;
+  beforeEach(() => {
+    matDialog = jasmine.createSpyObj('MatDialog', ['closeAll']);
+    component = new RequestDownloadComponent(matDialog);
+  });
 
-//   beforeEach(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [RequestDownloadComponent]
-//     });
-//     fixture = TestBed.createComponent(RequestDownloadComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
+  // check component is created
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
+  // check the pop up closes
+  it('should close pop up', () => {
+    component.closeDialog();
+    expect(matDialog.closeAll).toHaveBeenCalled();
+  });
+});

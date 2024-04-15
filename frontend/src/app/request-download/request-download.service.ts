@@ -17,9 +17,10 @@ import { ImageFormat } from '@syncfusion/ej2-angular-documenteditor';
 })
 // form to download as a pdf after apprentice has received three approvals
 export class RequestDownloadService {
-  constructor(private dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) {}
   public form;
   public textEditor?: DocumentEditorContainerComponent;
+  public pdfDocument: PdfDocument;
 
   // open the pop up to request download
   // set up what happens on button click
@@ -31,19 +32,20 @@ export class RequestDownloadService {
     });
     this.form = document.getElementById('downloadRequestForm');
 
-    this.form.addEventListener('submit', (event) => {
-      this.downloadPDF(event, this.textEditor);
-    });
+    if (this.form) {
+      this.form.addEventListener('submit', (event) => {
+        this.downloadPDF(event, this.textEditor);
+      });
+    }
   }
 
   // get the conent of the report and save it as a pdf document
   // there is no inbuilt functionality for this and therefore each page is treated as an image
   downloadPDF(event, textEditor) {
     event.preventDefault();
-    // let documentEditor = textEditor.contatiner.documentEditor;
 
     // create a blank pdf
-    let pdfDocument: PdfDocument = new PdfDocument();
+    this.pdfDocument = new PdfDocument();
     let numPages: number = textEditor.container.documentEditor.pageCount;
     textEditor.container.documentEditor.documentEditorSettings.printDevicePixelRatio = 2;
 
@@ -74,7 +76,7 @@ export class RequestDownloadService {
         }
 
         // add this new created page to the pdf
-        let section: PdfSection = pdfDocument.sections.add() as PdfSection;
+        let section: PdfSection = this.pdfDocument.sections.add() as PdfSection;
         (section as PdfSection).setPageSettings(settings);
         let page = section.pages.add();
 
@@ -87,7 +89,7 @@ export class RequestDownloadService {
 
         // after adding every page, save the doc
         if (loadedPage == numPages) {
-          pdfDocument.save('PDF Report For Submission.pdf');
+          this.pdfDocument.save('PDF Report For Submission.pdf');
         }
       };
     }

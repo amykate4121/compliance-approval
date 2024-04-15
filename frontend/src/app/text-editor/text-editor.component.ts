@@ -18,10 +18,10 @@ import { AiReportComponent } from '../ai-report/ai-report.component';
 export class TextEditorComponent implements OnInit {
   authenticated = false;
   constructor(
-    private requestApprovalService: RequestApprovalService,
-    private requestDownloadService: RequestDownloadService,
-    private textEditorApi: TextEditorApi,
-    private router: Router
+    public requestApprovalService: RequestApprovalService,
+    public requestDownloadService: RequestDownloadService,
+    public textEditorApi: TextEditorApi,
+    public router: Router
   ) {}
   signIn = Auth0.signIn;
   getProfile = Auth0.getProfile;

@@ -1,9 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  CharacterFormatProperties,
-  DocumentEditorContainerComponent,
-} from '@syncfusion/ej2-angular-documenteditor';
+import { DocumentEditorContainerComponent } from '@syncfusion/ej2-angular-documenteditor';
 import { ApproveService } from '../approve/approve.service';
 import { RequestChangesService } from '../request-changes/request-changes.service';
 import * as Auth0 from 'auth0-web';
@@ -17,13 +14,14 @@ import * as Auth0 from 'auth0-web';
 export class ApprovalPageComponent {
   authenticated = false;
   constructor(
-    private router: Router,
-    private approveService: ApproveService,
-    private requestChangesService: RequestChangesService
+    public router: Router,
+    public approveService: ApproveService,
+    public requestChangesService: RequestChangesService
   ) {}
   signIn = Auth0.signIn;
   getProfile = Auth0.getProfile;
   @ViewChild('documenteditor_default')
+  
   public container: DocumentEditorContainerComponent;
   // restrict the options that the user has, as they should only be able to comment rather than alter an apprentices report
   public items = ['Open', 'Comments', 'Find'];

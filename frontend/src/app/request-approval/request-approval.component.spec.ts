@@ -1,22 +1,25 @@
-// amy here
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialog } from '@angular/material/dialog';
+import { RequestApprovalComponent } from './request-approval.component';
 
-// import { RequestApprovalComponent } from './request-approval.component';
 
-// describe('RequestApprovalComponent', () => {
-//   let component: RequestApprovalComponent;
-//   let fixture: ComponentFixture<RequestApprovalComponent>;
+// check pop up interactions
+describe('RequestApprovalComponent', () => {
+  let component: RequestApprovalComponent;
+  let matDialog: MatDialog;
 
-//   beforeEach(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [RequestApprovalComponent],
-//     });
-//     fixture = TestBed.createComponent(RequestApprovalComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
+  beforeEach(() => {
+    matDialog = jasmine.createSpyObj('MatDialog', ['closeAll']);
+    component = new RequestApprovalComponent(matDialog);
+  });
 
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
+  // check component is created
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  // check the pop up closes
+  it('should close pop up', () => {
+    component.closeDialog();
+    expect(matDialog.closeAll).toHaveBeenCalled();
+  });
+});

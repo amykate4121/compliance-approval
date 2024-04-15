@@ -1,17 +1,25 @@
-// amy here
-// import { TestBed } from '@angular/core/testing';
+import { MatDialog } from '@angular/material/dialog';
+import { ApproveService } from './approve.service';
 
-// import { RequestApprovalService } from './approve.service';
+// check the approver can approve
+describe('ApproveService', () => {
+  let service: ApproveService;
+  let matDialog: MatDialog;
 
-// describe('RequestApprovalService', () => {
-//   let service: RequestApprovalService;
+  beforeEach(() => {
+    // mock the service
+    matDialog = jasmine.createSpyObj('MatDialog', ['open', 'closeAll']);
+    service = new ApproveService(matDialog);
+  });
 
-//   beforeEach(() => {
-//     TestBed.configureTestingModule({});
-//     service = TestBed.inject(RequestApprovalService);
-//   });
+  // check service is created
+  it('should create', () => {
+    expect(service).toBeTruthy();
+  });
 
-//   it('should be created', () => {
-//     expect(service).toBeTruthy();
-//   });
-// });
+  // check service is created
+  it('should create', () => {
+    service.openPopup();
+    expect(matDialog.open).toHaveBeenCalled();
+  });  
+});

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 // display loading page to user when redirecting after auth0 login
 export class CallbackComponent implements OnInit {
   name = '';
-  constructor(private router: Router) {}
+  constructor(public router: Router) {}
   getProfile = Auth0.getProfile;
 
   // redirect to text editor if apprentice, or approval page if approver

@@ -12,7 +12,7 @@ import { catchError } from 'rxjs/operators';
 // generate the ai report info page
 @Injectable()
 export class AiReportApiService {
-  constructor(private http: HttpClient) {}
+  constructor(public http: HttpClient) {}
 
   private static _handleError(err: HttpErrorResponse | any) {
     return throwError(

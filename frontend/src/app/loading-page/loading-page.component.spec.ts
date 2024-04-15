@@ -1,22 +1,22 @@
-// amy here
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { LoadingPageComponent } from './loading-page.component';
 
-// import { LoadingPageComponent } from './loading-page.component';
+// check redirect to login when first opening page
+describe('LoadingPageComponent', () => {
+  let component: LoadingPageComponent;
 
-// describe('LoadingPageComponent', () => {
-//   let component: LoadingPageComponent;
-//   let fixture: ComponentFixture<LoadingPageComponent>;
+  beforeEach(() => {
+    component = new LoadingPageComponent();
+  });
 
-//   beforeEach(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [LoadingPageComponent]
-//     });
-//     fixture = TestBed.createComponent(LoadingPageComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
+  // check component is created
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
+  // check sign in is called if not authenticated
+  it('should call signIn if not authenticated', () => {
+    spyOn(component, 'signIn');
+    component.ngOnInit();
+    expect(component.signIn).toHaveBeenCalled();
+  });
+});

@@ -11,6 +11,8 @@ export class ApproveService {
   constructor(private dialog: MatDialog) {}
   public form;
   public container?: DocumentEditorContainerComponent;
+  public apprentice: string;
+  public sendEmail: any;
 
   // open the pop up
   openPopup() {
@@ -18,8 +20,10 @@ export class ApproveService {
       width: '670px',
       panelClass: 'dialog-container',
     });
-    this.form = document.getElementById('approvalForm');
-    this.form.addEventListener('submit', this.sendApprovalEmail);
+    if(this.form){
+      this.form = document.getElementById('approvalForm');
+      this.form.addEventListener('submit', this.sendApprovalEmail);
+    }
   }
 
   // open default mail app to notify apprentice that they have received approval

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import * as Auth0 from 'auth0-web';
 
 @Component({
@@ -10,7 +9,7 @@ import * as Auth0 from 'auth0-web';
 export class UnauthorisedAccessComponent {
   authenticated = false;
   apprentice = false;
-  constructor(private router: Router ){}
+  constructor(){}
   // add auth0
   signIn = Auth0.signIn;
   getProfile = Auth0.getProfile;

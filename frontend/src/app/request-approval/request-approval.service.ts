@@ -21,9 +21,11 @@ export class RequestApprovalService {
     });
     this.form = document.getElementById('approvalRequestForm');
 
-    this.form.addEventListener('submit', (event) => {
-      this.sendEmail(event, this.container);
-    });
+    if (this.form) {
+      this.form.addEventListener('submit', (event) => {
+        this.sendEmail(event, this.container);
+      });
+    }
   }
 
   // download report and open local mail app
@@ -34,8 +36,8 @@ export class RequestApprovalService {
       'Downloaded Report For Approval',
       'Sfdt'
     );
-    
-    // open mail app using the approver emails inputted and a default email body 
+
+    // open mail app using the approver emails inputted and a default email body
     const approver1 = (<HTMLInputElement>document.getElementById('app1')).value;
     const approver2 = (<HTMLInputElement>document.getElementById('app2')).value;
     const approver3 = (<HTMLInputElement>document.getElementById('app3')).value;
