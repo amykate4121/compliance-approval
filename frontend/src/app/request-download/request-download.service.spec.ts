@@ -46,6 +46,7 @@ describe('RequestDownloadService', () => {
   it('should download pdf', () => {
     service.downloadPDF(new Event('submit'), textEditor);
     expect(matDialog.closeAll).toHaveBeenCalled();
-    expect(service.pdfDocument).not.toBeNull();
+    expect(service.testingPdfDocument).not.toBeNull();
+    // actual content cannot be verified as each pg is an image
   });
 });

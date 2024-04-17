@@ -20,7 +20,7 @@ export class RequestDownloadService {
   constructor(public dialog: MatDialog) {}
   public form;
   public textEditor?: DocumentEditorContainerComponent;
-  public pdfDocument: PdfDocument;
+  public testingPdfDocument: PdfDocument;
 
   // open the pop up to request download
   // set up what happens on button click
@@ -45,7 +45,7 @@ export class RequestDownloadService {
     event.preventDefault();
 
     // create a blank pdf
-    this.pdfDocument = new PdfDocument();
+    let pdfDocument = new PdfDocument();
     let numPages: number = textEditor.container.documentEditor.pageCount;
     textEditor.container.documentEditor.documentEditorSettings.printDevicePixelRatio = 2;
 
@@ -76,7 +76,7 @@ export class RequestDownloadService {
         }
 
         // add this new created page to the pdf
-        let section: PdfSection = this.pdfDocument.sections.add() as PdfSection;
+        let section: PdfSection = pdfDocument.sections.add() as PdfSection;
         (section as PdfSection).setPageSettings(settings);
         let page = section.pages.add();
 
@@ -89,10 +89,11 @@ export class RequestDownloadService {
 
         // after adding every page, save the doc
         if (loadedPage == numPages) {
-          this.pdfDocument.save('PDF Report For Submission.pdf');
+          pdfDocument.save('PDF Report For Submission.pdf');
         }
       };
     }
+    this.testingPdfDocument = pdfDocument;
     this.dialog.closeAll();
   }
 }

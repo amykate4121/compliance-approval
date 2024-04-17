@@ -17,18 +17,12 @@ describe('UnauthorisedAccessComponent', () => {
   // check sign in is called if not authenticated, using a mock user
   it('should call signIn if not authenticated', () => {
     spyOn(component, 'signIn');
-    const user: UserProfile = {
-      name: 'test@qmul.ac.uk',
-      email: '',
-      userId: '',
-    };
-    spyOn(component, 'getProfile').and.returnValue(user);
     component.ngOnInit();
     expect(component.signIn).toHaveBeenCalled();
   });
 
   // ensure that an apprentice is correctly identified by their account
-  it('should set apprentice to true if profile email is from @qmul.ac.uk', () => {
+  it('should be apprentice if @qmul.ac.uk', () => {
     spyOn(component, 'signIn');
     const user: UserProfile = {
       name: 'test@qmul.ac.uk',
@@ -41,7 +35,7 @@ describe('UnauthorisedAccessComponent', () => {
   });
 
   // ensure that an approver is correctly identified by their account
-  it('should set apprentice to false if profile email is NOT from @qmul.ac.uk', () => {
+  it('should be approver if NOT @qmul.ac.uk', () => {
     spyOn(component, 'signIn');
     const user: UserProfile = {
       name: 'test@gmail.com',

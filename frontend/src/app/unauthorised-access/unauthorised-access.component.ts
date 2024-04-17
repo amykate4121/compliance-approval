@@ -4,12 +4,12 @@ import * as Auth0 from 'auth0-web';
 @Component({
   selector: 'app-unauthorised-access',
   templateUrl: './unauthorised-access.component.html',
-  styleUrls: ['./unauthorised-access.component.scss']
+  styleUrls: ['./unauthorised-access.component.scss'],
 })
 export class UnauthorisedAccessComponent {
   authenticated = false;
   apprentice = false;
-  constructor(){}
+  constructor() {}
   // add auth0
   signIn = Auth0.signIn;
   getProfile = Auth0.getProfile;
@@ -21,9 +21,10 @@ export class UnauthorisedAccessComponent {
       this.signIn();
     }
 
-    if (this.getProfile().name.includes('@qmul.ac.uk')) {
-      this.apprentice = true;
+    if (this.getProfile()) {
+      if (this.getProfile().name.includes('@qmul.ac.uk')) {
+        this.apprentice = true;
+      }
     }
   }
-
 }
