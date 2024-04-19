@@ -33,7 +33,19 @@ export class TextEditorComponent implements OnInit {
   public isLoading = false;
   @ViewChild(AiReportComponent) aiReportComponent: AiReportComponent;
 
-  // load default document on creation
+  // redirect if not authenticated, or if they should not be able to access
+  ngOnInit(): void {
+    Auth0.subscribe((authenticated) => (this.authenticated = authenticated));
+    if (this.authenticated == false) {
+      this.signIn();
+    }
+    if (!this.getProfile().name.includes('@qmul.ac.uk')) {
+      this.router.navigate(['/unauthorised-access']);
+      return;
+    }
+  }
+
+    // load default document on creation
   // contains compliance information that MUST be included 
   onCreate(): any {
     let sfdt: string = `{"sections":[{"sectionFormat":{},"blocks":[{"paragraphFormat":{},"characterFormat":{},"inlines":[{"characterFormat":{},"text":"These materials are confidential and may not be used, edited, altered, reproduced, published or distributed without consent."}]}]}]}`;
@@ -46,18 +58,7 @@ export class TextEditorComponent implements OnInit {
   onOpen(): any {
     (this.container as DocumentEditorContainerComponent).documentEditor.showRestrictEditingPane(false);
   }
-
-  // redirect if not authenticated, or if they should not be able to access
-  ngOnInit(): void {
-    Auth0.subscribe((authenticated) => (this.authenticated = authenticated));
-    if (this.authenticated == false) {
-      this.signIn();
-    }
-    if (!this.getProfile().name.includes('@qmul.ac.uk')) {
-      this.router.navigate(['/unauthorised-access']);
-      return;
-    }
-  }
+  
   //  generate the AI report
   async generateReport() {
     // get full report content

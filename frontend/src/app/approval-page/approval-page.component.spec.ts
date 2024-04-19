@@ -1,17 +1,24 @@
 
 import { UserProfile } from "auth0-web/src/profile";
 import { ApprovalPageComponent } from "./approval-page.component";
+import { ApprovalPageApi } from "./approval-page.api";
 
 // check approvers are able to give approval
 describe('ApprovalPageComponent', () => {
   let component: ApprovalPageComponent;
+  let http: any;
 
   beforeEach(() => {
     // mock the component
     let router = jasmine.createSpyObj('Router', ['navigate']);
     let approveService = jasmine.createSpyObj('ApproveService', ['openPopup']);
     let requestChangesService = jasmine.createSpyObj('RequestChangesService', ['openPopup']);
-    component = new ApprovalPageComponent(router, approveService, requestChangesService);
+    
+    http = jasmine.createSpyObj('HttpClient', ['post']);
+    http.post.and.returnValue({ subscribe: () => {} });
+    let approvalPageApi = new ApprovalPageApi(http);
+    
+    component = new ApprovalPageComponent(router, approveService, requestChangesService, approvalPageApi);
   });
 
   // check component is created

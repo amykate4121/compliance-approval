@@ -19,6 +19,7 @@ import { AiReportApiService } from './ai-report/ai-report-api.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CallbackComponent } from './callback/callback.component';
 import { UnauthorisedAccessComponent } from './unauthorised-access/unauthorised-access.component';
+import { ApprovalPageApi } from './approval-page/approval-page.api';
 
 // set the router paths
 const appRoutes: Routes = [
@@ -64,6 +65,7 @@ const appRoutes: Routes = [
   providers: [
     AiReportApiService,
     TextEditorApi,
+    ApprovalPageApi,
     ToolbarService,
     importProvidersFrom(HttpClientModule),
   ],

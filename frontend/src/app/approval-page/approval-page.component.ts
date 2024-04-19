@@ -4,6 +4,8 @@ import { DocumentEditorContainerComponent } from '@syncfusion/ej2-angular-docume
 import { ApproveService } from '../approve/approve.service';
 import { RequestChangesService } from '../request-changes/request-changes.service';
 import * as Auth0 from 'auth0-web';
+import { AiReportComponent } from '../ai-report/ai-report.component';
+import { ApprovalPageApi } from './approval-page.api';
 
 @Component({
   selector: 'app-approval-page',
@@ -16,7 +18,8 @@ export class ApprovalPageComponent {
   constructor(
     public router: Router,
     public approveService: ApproveService,
-    public requestChangesService: RequestChangesService
+    public requestChangesService: RequestChangesService,
+    public approvalPageApi: ApprovalPageApi
   ) {}
   signIn = Auth0.signIn;
   getProfile = Auth0.getProfile;
@@ -25,9 +28,15 @@ export class ApprovalPageComponent {
   public container: DocumentEditorContainerComponent;
   // restrict the options that the user has, as they should only be able to comment rather than alter an apprentices report
   public items = ['Open', 'Comments', 'Find'];
+  @ViewChild('drawer')
+  public drawer?;
+  public isLoading = false;
+  @ViewChild(AiReportComponent) aiReportComponent: AiReportComponent;
+
 
   // redirect if not authenticated, or not an approver
   ngOnInit(): void {
+    this.isLoading = false;
     Auth0.subscribe((authenticated) => (this.authenticated = authenticated));
     if (this.authenticated == false) {
       this.signIn();
@@ -37,6 +46,40 @@ export class ApprovalPageComponent {
       this.router.navigate(['/unauthorised-access']);
     }
   }
+
+  //  generate the AI report
+  async generateReport() {
+    // get full report content
+    this.container.documentEditor.selection.selectAll();
+    let content = this.container.documentEditor.selection.text;
+    let reportContent = {
+      fullBody: content,
+    };
+
+    // save the report body, showing loading whilst it saves
+    try {
+      document.getElementById('overlay').style.display = 'block';
+      this.isLoading = true;
+      await this.approvalPageApi.saveBodyForAiReport(reportContent).toPromise();
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      document.getElementById('overlay').style.display = 'none';
+      this.isLoading = false;
+    }
+
+    // open drawer containing results of ai report
+    this.drawer.toggle();
+    this.aiReportComponent.countNumSentences(content);
+    this.aiReportComponent.ngOnInit();
+  }
+
+  // close the ai report
+  close() {
+    this.drawer.toggle();
+    this.aiReportComponent.ngOnDestroy();
+  }
+
 
   // open pop up to send approval email
   approve() {
