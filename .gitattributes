@@ -1,0 +1,4 @@
+backend/src/savedModels/* filter=lfs diff=lfs merge=lfs -text
+backend/src/savedModels/config.json filter=lfs diff=lfs merge=lfs -text
+backend/src/savedModels/model.safetensors filter=lfs diff=lfs merge=lfs -text
+backend/src/savedModels/training_args.bin filter=lfs diff=lfs merge=lfs -text
