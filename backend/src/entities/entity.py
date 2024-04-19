@@ -7,10 +7,10 @@ from sqlalchemy.orm import sessionmaker
 
 # link to the db
 # this is how ai reports are created and saved
-db_url = 'localhost:5432'
-db_name = 'cap'
+db_url = 'cap.cbi6gwomadn0.eu-north-1.rds.amazonaws.com'
+db_name = 'capdb'
 db_user = 'postgres'
-db_password = 'C4p'
+db_password = 'C0mplianceApprovalPortal'
 engine = create_engine(f'postgresql://{db_user}:{db_password}@{db_url}/{db_name}')
 Session = sessionmaker(bind=engine)
 
