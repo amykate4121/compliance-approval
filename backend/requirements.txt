@@ -47,7 +47,6 @@ six==1.16.0
 SQLAlchemy==2.0.28
 sympy==1.12
 tokenizers==0.15.2
-torch==2.2.1
 tqdm==4.66.2
 transformers==4.38.2
 typing_extensions==4.10.0
