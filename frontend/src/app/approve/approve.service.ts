@@ -20,9 +20,12 @@ export class ApproveService {
       width: '670px',
       panelClass: 'dialog-container',
     });
-    if(this.form){
-      this.form = document.getElementById('approvalForm');
-      this.form.addEventListener('submit', this.sendApprovalEmail);
+
+    this.form = document.getElementById('approvalForm');
+    if (this.form) {
+      this.form.addEventListener('submit', (event) => {
+        this.sendApprovalEmail(event);
+      });
     }
   }
 

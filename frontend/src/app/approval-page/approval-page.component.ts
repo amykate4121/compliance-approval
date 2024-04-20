@@ -97,5 +97,7 @@ export class ApprovalPageComponent {
       'credential',
       'CommentsOnly'
     );
+
+    (this.container as DocumentEditorContainerComponent).documentEditor.showRestrictEditingPane(false);
   }
 }
