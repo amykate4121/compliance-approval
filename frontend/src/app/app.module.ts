@@ -59,11 +59,12 @@ const appRoutes: Routes = [
       clientId: 'pFKG6ErjOE4crtGf0aXxmSt1aWONQTgp',
       authorizationParams: {
         redirect_uri: 'http://localhost:4200/text-editor',
+        // redirect_uri: 'http://compliance-approval-portal.s3-website.eu-north-1.amazonaws.com/text-editor',   // url used to generate dist which is uploaded to generate dist file which is uploaded to s3 bucket
       },
     }),
   ],
   providers: [
-    AiReportApiService,
+    // AiReportApiService,
     TextEditorApi,
     ApprovalPageApi,
     ToolbarService,
@@ -78,6 +79,7 @@ export class AppModule {
       audience: 'https://approval-portal/',
       clientID: 'pFKG6ErjOE4crtGf0aXxmSt1aWONQTgp',
       redirectUri: 'http://localhost:4200/callback',
+      // redirectUri: 'http://compliance-approval-portal.s3-website.eu-north-1.amazonaws.com/callback',    // url used to generate dist which is uploaded to generate dist file which is uploaded to s3 bucket
       scope: 'openid profile manage:report',
     });
   }

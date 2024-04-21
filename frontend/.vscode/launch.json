@@ -8,6 +8,7 @@
       "request": "launch",
       "preLaunchTask": "npm: start",
       "url": "http://localhost:4200/"
+      // "url": "http://compliance-approval-portal.s3-website.eu-north-1.amazonaws.com/"    // url used to generate dist which is uploaded to generate dist file which is uploaded to s3 bucket
     },
     {
       "name": "ng test",
@@ -15,6 +16,7 @@
       "request": "launch",
       "preLaunchTask": "npm: test",
       "url": "http://localhost:9876/debug.html"
+      // "url": "http://compliance-approval-portal.s3-website.eu-north-1.amazonaws.com/debug.html"    // url used to generate dist which is uploaded to generate dist file which is uploaded to s3 bucket
     }
   ]
 }
