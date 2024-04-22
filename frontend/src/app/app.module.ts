@@ -64,7 +64,7 @@ const appRoutes: Routes = [
     }),
   ],
   providers: [
-    // AiReportApiService,
+    AiReportApiService,
     TextEditorApi,
     ApprovalPageApi,
     ToolbarService,
